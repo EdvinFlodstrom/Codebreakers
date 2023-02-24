@@ -40,6 +40,6 @@ public class PlayerProjectile : MonoBehaviour
         {
             collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
         }
-        gameObject.SetActive(false);
+        gameObject.SetActive(false); 
     }
 }
