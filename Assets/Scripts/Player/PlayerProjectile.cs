@@ -22,24 +22,36 @@ public class PlayerProjectile : MonoBehaviour
 
     void Update()
     {
+        if (projectileHit) return;
+
         flightDuration += Time.deltaTime;
 
         transform.position = new Vector3(gameObject.transform.position.x + Time.deltaTime * projectileSpeed , gameObject.transform.position.y, gameObject.transform.position.z);
 
         if (flightDuration > flightDurationMax) gameObject.SetActive(false);
     }
-    public void Direction()
+    public void Direction(float _direction)
     {
+        flightDuration = 0;
+        gameObject.SetActive(true);
+        projectileHit = false;
+        boxCollider.enabled = false;
 
-        //Mathf.Sign(direction - transform.position.x)
-        
+        float localScaleX = transform.localScale.x;
+        if (Mathf.Sign(localScaleX) != _direction)
+            localScaleX = -localScaleX;
+
+        transform.localScale = new Vector3(localScaleX, transform.localScale.y, transform.localScale.z);
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        projectileHit = true;
+        boxCollider.enabled = false;
         if (collision.gameObject.tag == "Enemy")
         {
             collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
         }
-        gameObject.SetActive(false); 
+        gameObject.SetActive(false);
     }
 }

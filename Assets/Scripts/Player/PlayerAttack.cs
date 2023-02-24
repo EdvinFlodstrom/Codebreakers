@@ -21,9 +21,9 @@ public class PlayerAttack : MonoBehaviour
 
         if ((Input.GetMouseButton(0) || (Input.GetKey(KeyCode.LeftShift))) && (attackWait > attackCooldown))
         {
-            //Fungerar
             attackWait = 0;
             lasers[Attack(attackDamage)].transform.position = playerPosition.position;
+            lasers[Attack(attackDamage)].GetComponent<PlayerProjectile>().Direction(Mathf.Sign(transform.localScale.x));
         }
     }
     private int Attack(float _damage)
