@@ -26,7 +26,9 @@ public class PlayerProjectile : MonoBehaviour
 
         flightDuration += Time.deltaTime;
 
-        transform.position = new Vector3(gameObject.transform.position.x + Time.deltaTime * projectileSpeed , gameObject.transform.position.y, gameObject.transform.position.z);
+        float speed = projectileSpeed * Time.deltaTime;
+        transform.Translate(speed, 0, 0);
+        
 
         if (flightDuration > flightDurationMax) gameObject.SetActive(false);
     }

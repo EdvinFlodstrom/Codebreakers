@@ -147,8 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b022af9ca3b5184ca339726c81606d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 10
-  flightDurationMax: 2
+  projectileSpeed: 15
+  flightDurationMax: 1
   damage: 1
 --- !u!95 &6745661033373897180
 Animator:
@@ -317,8 +317,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b022af9ca3b5184ca339726c81606d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 10
-  flightDurationMax: 2
+  projectileSpeed: 15
+  flightDurationMax: 1
   damage: 1
 --- !u!95 &4908650213836273003
 Animator:
@@ -352,7 +352,7 @@ GameObject:
   m_Layer: 8
   m_Name: ProjectileHolder
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -522,8 +522,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b022af9ca3b5184ca339726c81606d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 10
-  flightDurationMax: 2
+  projectileSpeed: 15
+  flightDurationMax: 1
   damage: 1
 --- !u!95 &8034263918047537729
 Animator:
@@ -754,7 +754,7 @@ MonoBehaviour:
   - {fileID: 2370988846451046348}
   - {fileID: 7909655758061105899}
   - {fileID: 5743132383026039362}
-  playerPosition: {fileID: 7100753909500567146}
+  playerPosition: {fileID: 6203513100221854331}
 --- !u!1 &7909655758061105899
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,8 +902,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b022af9ca3b5184ca339726c81606d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 10
-  flightDurationMax: 2
+  projectileSpeed: 15
+  flightDurationMax: 1
   damage: 1
 --- !u!95 &494650489621744714
 Animator:

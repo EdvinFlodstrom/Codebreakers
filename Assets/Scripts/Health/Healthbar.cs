@@ -33,16 +33,16 @@ public class Healthbar : MonoBehaviour
 
         if (heartsLost > 0)
         {
-            removeHeart(heartsLost);
+            RemoveHeart(heartsLost);
         }
         if (heartsGained != heartsLost)
         {
-            addHeart(heartsLost + 1);
+            AddHeart(heartsLost + 1);
         }
 
         if (playerHealth.maxHealth > 3) totalHeart4.enabled = true;
     }
-    private void removeHeart(float _hearts)
+    private void RemoveHeart(float _hearts)
     {
          if (playerHealth.maxHealth > 3)
         {
@@ -58,7 +58,7 @@ public class Healthbar : MonoBehaviour
             if (_hearts == 3) currentHeart1.enabled = false;
         }
     }
-    private void addHeart(float _hearts)
+    private void AddHeart(float _hearts)
     {
         if (playerHealth.maxHealth > 3)
         {

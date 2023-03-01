@@ -21,16 +21,23 @@ public class PlayerAttack : MonoBehaviour
 
         if ((Input.GetMouseButton(0) || (Input.GetKey(KeyCode.LeftShift))) && (attackWait > attackCooldown))
         {
-            attackWait = 0;
-            lasers[Attack(attackDamage)].transform.position = playerPosition.position;
-            lasers[Attack(attackDamage)].GetComponent<PlayerProjectile>().Direction(Mathf.Sign(transform.localScale.x));
+            Attack();
         }
     }
-    private int Attack(float _damage)
+
+    private void Attack()
+    {
+        attackWait = 0;
+
+        lasers[Projectile()].transform.position = playerPosition.position;
+        lasers[Projectile()].GetComponent<PlayerProjectile>().Direction(Mathf.Sign(transform.localScale.x));
+        //^ Problemet om att projektilen byter håll i luften uppstår någonstans i raden kod ovan
+    }
+
+    private int Projectile()
     {
         for (int i = 0; i < lasers.Length; i++)
         {
-            lasers[i].SetActive(true);
             if (!lasers[i].activeInHierarchy)
                 return i;
         }
