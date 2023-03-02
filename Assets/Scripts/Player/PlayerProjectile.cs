@@ -37,7 +37,7 @@ public class PlayerProjectile : MonoBehaviour
         flightDuration = 0;
         gameObject.SetActive(true);
         projectileHit = false;
-        boxCollider.enabled = false;
+       //boxCollider.enabled = false;
 
         float localScaleX = transform.localScale.x;
         if (Mathf.Sign(localScaleX) != _direction)
