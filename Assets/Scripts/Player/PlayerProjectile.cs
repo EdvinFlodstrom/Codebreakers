@@ -46,13 +46,13 @@ public class PlayerProjectile : MonoBehaviour
         transform.localScale = new Vector3(localScaleX, transform.localScale.y, transform.localScale.z);
 
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D col)
     {
         projectileHit = true;
         boxCollider.enabled = false;
-        if (collision.gameObject.tag == "Enemy")
+        if (col.gameObject.tag == "Enemy")
         {
-            collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
+            col.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
         }
         gameObject.SetActive(false);
     }
