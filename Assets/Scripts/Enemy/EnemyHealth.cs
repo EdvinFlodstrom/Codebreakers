@@ -24,7 +24,7 @@ public class EnemyHealth : MonoBehaviour
     {
         enemyCurrentHealth = Mathf.Clamp(enemyCurrentHealth - _damage, 0, enemyHealth);
 
-        if (enemyCurrentHealth > 1)
+        if (enemyCurrentHealth < 1)
         {
             anim.SetBool("dead", false);
             gameObject.SetActive(false);

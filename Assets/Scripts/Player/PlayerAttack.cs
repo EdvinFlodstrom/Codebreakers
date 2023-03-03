@@ -28,9 +28,10 @@ public class PlayerAttack : MonoBehaviour
     private void Attack()
     {
         attackWait = 0;
+        
 
         lasers[Projectile()].transform.position = playerPosition.position;
-        lasers[Projectile()].GetComponent<PlayerProjectile>().Direction(Mathf.Sign(transform.localScale.x));
+        lasers[Projectile()].GetComponent<PlayerProjectile>().ActivateProjectile();
         //^ Problemet om att projektilen byter håll i luften uppstår någonstans i raden kod ovan
     }
 

@@ -5,9 +5,11 @@ public class PlayerProjectile : MonoBehaviour
     [SerializeField] private float projectileSpeed;
     [SerializeField] private float flightDurationMax;
     [SerializeField] private int damage;
+
+    [SerializeField] private Transform playerLocation;
+
     private float flightDuration;
 
-    private Transform direction;
     private bool projectileHit;
     private BoxCollider2D boxCollider;
     private Animator anim;
@@ -28,32 +30,29 @@ public class PlayerProjectile : MonoBehaviour
 
         float speed = projectileSpeed * Time.deltaTime;
         transform.Translate(speed, 0, 0);
+        //^ ej problemet
         
 
         if (flightDuration > flightDurationMax) gameObject.SetActive(false);
     }
-    public void Direction(float _direction)
+    public void ActivateProjectile()
     {
         flightDuration = 0;
-        gameObject.SetActive(true);
         projectileHit = false;
-       //boxCollider.enabled = false;
-
-        float localScaleX = transform.localScale.x;
-        if (Mathf.Sign(localScaleX) != _direction)
-            localScaleX = -localScaleX;
-
-        transform.localScale = new Vector3(localScaleX, transform.localScale.y, transform.localScale.z);
+        gameObject.SetActive(true);
+        if (boxCollider.enabled == false) boxCollider.enabled = true;
 
     }
+
     private void OnTriggerEnter2D(Collider2D col)
     {
-        projectileHit = true;
-        boxCollider.enabled = false;
+        
         if (col.gameObject.tag == "Enemy")
         {
+            projectileHit = true;
+            boxCollider.enabled = false;
             col.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
+            gameObject.SetActive(false);
         }
-        gameObject.SetActive(false);
     }
 }

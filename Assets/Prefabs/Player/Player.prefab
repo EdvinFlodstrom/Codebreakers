@@ -150,6 +150,7 @@ MonoBehaviour:
   projectileSpeed: 15
   flightDurationMax: 1
   damage: 1
+  playerLocation: {fileID: 0}
 --- !u!95 &6745661033373897180
 Animator:
   serializedVersion: 4
@@ -320,6 +321,7 @@ MonoBehaviour:
   projectileSpeed: 15
   flightDurationMax: 1
   damage: 1
+  playerLocation: {fileID: 0}
 --- !u!95 &4908650213836273003
 Animator:
   serializedVersion: 4
@@ -525,6 +527,7 @@ MonoBehaviour:
   projectileSpeed: 15
   flightDurationMax: 1
   damage: 1
+  playerLocation: {fileID: 0}
 --- !u!95 &8034263918047537729
 Animator:
   serializedVersion: 4
@@ -905,6 +908,7 @@ MonoBehaviour:
   projectileSpeed: 15
   flightDurationMax: 1
   damage: 1
+  playerLocation: {fileID: 7100753909500567146}
 --- !u!95 &494650489621744714
 Animator:
   serializedVersion: 4
