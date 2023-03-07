@@ -5,7 +5,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float attackCooldown;
     [SerializeField] private float attackDamage;
     [SerializeField] private GameObject[] lasers;
-    [SerializeField] public Transform playerPosition;
+    [SerializeField] public Transform firePoint;
 
 
     private float attackWait = Mathf.Infinity;
@@ -30,9 +30,8 @@ public class PlayerAttack : MonoBehaviour
         attackWait = 0;
         
 
-        lasers[Projectile()].transform.position = playerPosition.position;
-        lasers[Projectile()].GetComponent<PlayerProjectile>().ActivateProjectile();
-        //^ Problemet om att projektilen byter håll i luften uppstår någonstans i raden kod ovan
+        lasers[Projectile()].transform.position = firePoint.position;
+        lasers[Projectile()].GetComponent<PlayerProjectile>().Direction(Mathf.Sign(transform.localScale.x));
     }
 
     private int Projectile()
