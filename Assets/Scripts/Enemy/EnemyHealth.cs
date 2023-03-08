@@ -6,10 +6,15 @@ public class EnemyHealth : MonoBehaviour
     private float enemyCurrentHealth;
 
     private Animator anim;
+    private BoxCollider2D boxCollider;
+
+    [Header("Components to be disabled")]
+    [SerializeField] private Behaviour[] components;
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        boxCollider = GetComponent<BoxCollider2D>();
     }
     void Start()
     {
@@ -26,8 +31,10 @@ public class EnemyHealth : MonoBehaviour
 
         if (enemyCurrentHealth < 1)
         {
-            anim.SetBool("dead", false);
-            gameObject.SetActive(false);
+            anim.SetBool("dead", true);
+            boxCollider.enabled = false;
+            foreach (Behaviour component in components)
+                component.enabled = false;
         }
     }
 }

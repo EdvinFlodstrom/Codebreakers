@@ -6,32 +6,43 @@ public class ShootingPenguinAttack : MonoBehaviour
     [SerializeField] float rayDistance;
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private Transform playerLocation;
+    [SerializeField] private Transform firePoint;
+    [SerializeField] private GameObject[] projectiles;
+
     private BoxCollider2D boxCollider;
     private bool playerSpotted;
+    private float attackWait;
+    private double attackCooldown = 0.92;
     private Animator anim;
-    SpriteRenderer spi;
 
     void Start()
     {
         anim = GetComponent<Animator>();
-        spi = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
     }
 
     void Update()
     {
+        attackWait += Time.deltaTime;
+
         if (PlayerInRange())
         {
             anim.SetBool("playerInRange", true);
             if (playerLocation.position.x > transform.position.x)
             {
-                spi.flipX = true;
+                gameObject.transform.localScale = new Vector3((float)-0.35, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
             }
             else if (playerLocation.position.x < transform.position.x)
             {
-                spi.flipX = false;
+                gameObject.transform.localScale = new Vector3((float)0.35, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
             }
-            Attack();
+            if (attackWait > attackCooldown)
+            {
+                attackWait = 0;
+                Attack();
+            }
+
+            
         }
         else anim.SetBool("playerInRange", false);
         
@@ -43,6 +54,16 @@ public class ShootingPenguinAttack : MonoBehaviour
     }
     private void Attack()
     {
-
+        projectiles[Projectile()].transform.position = firePoint.position;
+        projectiles[Projectile()].GetComponent<ShootingPenguinProjectile>().ActivateProjectile(Mathf.Sign(transform.localScale.x));
+    }
+    private int Projectile()
+    {
+        for (int i = 0; i < projectiles.Length; i++)
+        {
+            if (!projectiles[i].activeInHierarchy)
+                return i;
+        }
+        return 0;
     }
 }

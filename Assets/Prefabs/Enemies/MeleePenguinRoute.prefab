@@ -254,6 +254,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHealth: 5
+  components:
+  - {fileID: 7059693816197263271}
+  - {fileID: 4202412565060784964}
 --- !u!1 &4202412565390894842
 GameObject:
   m_ObjectHideFlags: 0

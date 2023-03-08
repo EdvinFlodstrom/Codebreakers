@@ -7,6 +7,10 @@ public class PlayerHealth : MonoBehaviour
 
     [SerializeField] public int startingHealth;
     [SerializeField] public int maxHealth;
+
+    [Header("Components to be disabled")]
+    [SerializeField] private Behaviour[] components;
+
     public float currentHealth { get; private set; }
     private bool invulnerable;
     private int invulnerabilityDuration = 1;
@@ -41,6 +45,9 @@ public class PlayerHealth : MonoBehaviour
         }
         else if (currentHealth == 0 || currentHealth < 0)
         {
+            foreach (Behaviour component in components)
+                component.enabled = false;
+
             gameOver = true;
         }
         

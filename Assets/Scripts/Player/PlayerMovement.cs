@@ -29,8 +29,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (GetComponent<PlayerHealth>().gameOver == false)
-        {
             float horizontalInput = Input.GetAxis("Horizontal");
 
             if (Input.GetKey(KeyCode.W))
@@ -73,8 +71,6 @@ public class PlayerMovement : MonoBehaviour
                 gameObject.transform.localScale = new Vector3((float)-0.25, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
             }
             anim.SetBool("run", horizontalInput != 0);
-        }
-
     }
     private void Jump()
     {
