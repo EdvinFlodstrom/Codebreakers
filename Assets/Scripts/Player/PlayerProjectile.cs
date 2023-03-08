@@ -13,8 +13,7 @@ public class PlayerProjectile : MonoBehaviour
 
     private bool projectileHit;
     private BoxCollider2D boxCollider;
-    private Animator anim;
-    
+    private Animator anim;    
 
     void Awake()
     {
@@ -28,6 +27,7 @@ public class PlayerProjectile : MonoBehaviour
 
         flightDuration += Time.deltaTime;
 
+        
         float speed = projectileSpeed * Time.deltaTime * direction;
         transform.Translate(speed, 0, 0);
         
@@ -45,7 +45,9 @@ public class PlayerProjectile : MonoBehaviour
 
         float localScaleX = transform.localScale.x;
         if (Mathf.Sign(localScaleX) != _direction)
+        {
             localScaleX = -localScaleX;
+        }
 
         transform.localScale = new Vector3(localScaleX, transform.localScale.y, transform.localScale.z);
 

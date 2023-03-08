@@ -15,7 +15,6 @@ public class PlayerMovement : MonoBehaviour
     private bool canJump;
 
 
-
     void Start()
     {
 
@@ -38,7 +37,11 @@ public class PlayerMovement : MonoBehaviour
             {
                 anim.SetBool("lookUp", true);
             }
-            else anim.SetBool("lookUp", false);
+            else
+            {
+                anim.SetBool("lookUp", false);
+            }
+            
 
             if (Input.GetMouseButton(0) || (Input.GetKey(KeyCode.LeftShift)))
             {
