@@ -37,7 +37,6 @@ public class PlayerProjectile : MonoBehaviour
 
     public void Direction(float _direction)
     {
-        Debug.Log(_direction);
         flightDuration = 0;
         direction = _direction;
         gameObject.SetActive(true);

@@ -33,22 +33,18 @@ public class ShootingPenguinProjectile : MonoBehaviour
     }
     public void ActivateProjectile(float _direction)
     {
-        Debug.Log(_direction);
         flightDuration = 0;
-        direction = _direction;
+        direction = -_direction;
         gameObject.SetActive(true);
         projectileHit = false;
         boxCollider.enabled = true;
 
         float localScaleX = transform.localScale.x;
-        Debug.Log(localScaleX);
-        if (Mathf.Sign((float)(localScaleX / 0.2)) != _direction)
-        {
-            localScaleX = -localScaleX;
-        }
-        Debug.Log(localScaleX/0.2);
 
-        transform.localScale = new Vector3(localScaleX, transform.localScale.y, transform.localScale.z);
+        if (Mathf.Round(Mathf.Sign((float)(localScaleX / 0.2))) == _direction)
+        {
+            direction = -direction;
+        }        
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -56,7 +52,7 @@ public class ShootingPenguinProjectile : MonoBehaviour
         {
             col.GetComponent<PlayerHealth>().TakeDamage(damage);
         }
-        if (col.tag != "Enemy")
+        if (col.tag != "Enemy" && col.tag != "Heart")
         {
             projectileHit = true;
             boxCollider.enabled = false;

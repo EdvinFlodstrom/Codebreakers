@@ -41,8 +41,6 @@ public class ShootingPenguinAttack : MonoBehaviour
                 attackWait = 0;
                 Attack();
             }
-
-            
         }
         else anim.SetBool("playerInRange", false);
         
