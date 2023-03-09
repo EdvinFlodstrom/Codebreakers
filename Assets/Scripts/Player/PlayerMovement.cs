@@ -41,13 +41,13 @@ public class PlayerMovement : MonoBehaviour
             }
             
 
-            if (Input.GetMouseButton(0) || (Input.GetKey(KeyCode.LeftShift)))
+            if (Input.GetMouseButton(0) || (Input.GetKey(KeyCode.E)))
             {
                 anim.SetBool("shoot", true);
             }
             else anim.SetBool("shoot", false);
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 Jump();
             }
@@ -60,12 +60,12 @@ public class PlayerMovement : MonoBehaviour
                 anim.SetBool("jump", true);
             }
 
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetKey(KeyCode.RightArrow))
             {
                 transform.position = transform.position + new Vector3(horizontalInput * speed * Time.deltaTime, verticalInput * speed * Time.deltaTime);
                 gameObject.transform.localScale = new Vector3((float)0.25, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
             }
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetKey(KeyCode.LeftArrow))
             {
                 transform.position = transform.position + new Vector3(horizontalInput * speed * Time.deltaTime, verticalInput * speed * Time.deltaTime);
                 gameObject.transform.localScale = new Vector3((float)-0.25, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
@@ -74,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             if (isGrounded())
             {

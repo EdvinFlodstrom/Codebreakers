@@ -39,7 +39,7 @@ public class PlayerAttack : MonoBehaviour
 
         attackWait += Time.deltaTime;
 
-        if ((Input.GetMouseButton(0) || (Input.GetKey(KeyCode.LeftShift))) && (attackWait > attackCooldown))
+        if ((Input.GetMouseButton(0) || (Input.GetKey(KeyCode.E))) && (attackWait > attackCooldown))
         {
             Attack(aimUp);
         }

@@ -33,6 +33,7 @@ public class ShootingPenguinProjectile : MonoBehaviour
     }
     public void ActivateProjectile(float _direction)
     {
+        Debug.Log(_direction);
         flightDuration = 0;
         direction = _direction;
         gameObject.SetActive(true);
@@ -40,10 +41,12 @@ public class ShootingPenguinProjectile : MonoBehaviour
         boxCollider.enabled = true;
 
         float localScaleX = transform.localScale.x;
-        if (Mathf.Sign(localScaleX) != _direction)
+        Debug.Log(localScaleX);
+        if (Mathf.Sign((float)(localScaleX / 0.2)) != _direction)
         {
             localScaleX = -localScaleX;
         }
+        Debug.Log(localScaleX/0.2);
 
         transform.localScale = new Vector3(localScaleX, transform.localScale.y, transform.localScale.z);
     }
