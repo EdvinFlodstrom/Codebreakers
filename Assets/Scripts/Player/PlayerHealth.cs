@@ -53,7 +53,7 @@ public class PlayerHealth : MonoBehaviour
             foreach (Behaviour component in components)
                 component.enabled = false;
             boxCollider.enabled = false;
-            
+            rigidBody.gravityScale = 0;
             anim.SetTrigger("dead");
             gameOver = true;
         }
