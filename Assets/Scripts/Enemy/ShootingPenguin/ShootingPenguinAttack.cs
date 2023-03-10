@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Threading;
 
 public class ShootingPenguinAttack : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class ShootingPenguinAttack : MonoBehaviour
     private BoxCollider2D boxCollider;
     private bool playerSpotted;
     private float attackWait;
-    private double attackCooldown = 0.92;
+    private double attackCooldown = 1;
     private Animator anim;
 
     void Start()
@@ -24,25 +25,25 @@ public class ShootingPenguinAttack : MonoBehaviour
     void Update()
     {
         attackWait += Time.deltaTime;
+        if (attackWait > 0.64) anim.SetBool("attack", false);
 
         if (PlayerInRange())
         {
-            anim.SetBool("playerInRange", true);
             if (playerLocation.position.x > transform.position.x)
             {
-                gameObject.transform.localScale = new Vector3((float)-0.35, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
+                gameObject.transform.localScale = new Vector3(-1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
             }
             else if (playerLocation.position.x < transform.position.x)
             {
-                gameObject.transform.localScale = new Vector3((float)0.35, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
+                gameObject.transform.localScale = new Vector3(1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
             }
             if (attackWait > attackCooldown)
             {
+                anim.SetBool("attack", true);
                 attackWait = 0;
                 Attack();
             }
         }
-        else anim.SetBool("playerInRange", false);
         
     }
     private bool PlayerInRange()

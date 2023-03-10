@@ -60,15 +60,15 @@ public class PlayerMovement : MonoBehaviour
                 anim.SetBool("jump", true);
             }
 
-            if (Input.GetKey(KeyCode.RightArrow))
+            if (Input.GetKey(KeyCode.RightArrow) && !(Input.GetKey(KeyCode.LeftArrow)))
             {
                 transform.position = transform.position + new Vector3(horizontalInput * speed * Time.deltaTime, verticalInput * speed * Time.deltaTime);
-                gameObject.transform.localScale = new Vector3((float)0.25, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
+                gameObject.transform.localScale = new Vector3(1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
             }
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
+            if (Input.GetKey(KeyCode.LeftArrow) && !(Input.GetKey(KeyCode.RightArrow)))
+        {
                 transform.position = transform.position + new Vector3(horizontalInput * speed * Time.deltaTime, verticalInput * speed * Time.deltaTime);
-                gameObject.transform.localScale = new Vector3((float)-0.25, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
+                gameObject.transform.localScale = new Vector3(-1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
             }
             anim.SetBool("run", horizontalInput != 0);
     }

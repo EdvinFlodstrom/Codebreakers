@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 858844255837137042}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.0324936, y: -1.11, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5589966267673904153}
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 10.24, y: 10.24}
+  m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -105,18 +105,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.1566577, y: 1.069756}
+  m_Offset: {x: 0.0514822, y: 0.2741385}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 10.24, y: 10.24}
-    newSize: {x: 10.24, y: 10.24}
+    oldSize: {x: 2.56, y: 2.56}
+    newSize: {x: 2.56, y: 2.56}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.8981333, y: 5.8483725}
+  m_Size: {x: 0.9832802, y: 1.489684}
   m_EdgeRadius: 0
 --- !u!50 &858844254947956520
 Rigidbody2D:
@@ -190,6 +190,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 3
   maxHealth: 3
+  components:
+  - {fileID: 858844254947956532}
+  - {fileID: 858844254947956521}
+  - {fileID: 858844254947956535}
   gameOver: 0
 --- !u!114 &858844254947956535
 MonoBehaviour:
@@ -205,10 +209,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCooldown: 0.5
   attackDamage: 1
-  regularLasers: []
-  rotatedLasers: []
-  firePointRegular: {fileID: 0}
-  firePointRotated: {fileID: 0}
+  regularLasers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  rotatedLasers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  rotatedLasersLeft:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  firePointRegular: {fileID: 5589966267673904153}
+  firePointRotated: {fileID: 3066222243483635020}
 --- !u!1 &1112552194629696324
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,7 +250,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1112552194629696324}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.88, y: 2.2, z: 0}
+  m_LocalPosition: {x: 0.78, y: 0.54, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -264,7 +281,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5589966267673904154}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.88, y: 1.05, z: 0}
+  m_LocalPosition: {x: 0.79, y: 0.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

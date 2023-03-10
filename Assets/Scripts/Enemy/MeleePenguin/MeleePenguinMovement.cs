@@ -41,9 +41,9 @@ public class MeleePenguinMovement : MonoBehaviour
 
             if(movingLeft == false)
             {
-                penguin.transform.localScale = new Vector3((float)-0.35, penguin.transform.localScale.y, penguin.transform.localScale.z);
+                penguin.transform.localScale = new Vector3(-1, penguin.transform.localScale.y, penguin.transform.localScale.z);
             }
-            else penguin.transform.localScale = new Vector3((float)0.35, penguin.transform.localScale.y, penguin.transform.localScale.z);
+            else penguin.transform.localScale = new Vector3(1, penguin.transform.localScale.y, penguin.transform.localScale.z);
         }
     }
 

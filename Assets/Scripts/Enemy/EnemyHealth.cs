@@ -31,10 +31,14 @@ public class EnemyHealth : MonoBehaviour
 
         if (enemyCurrentHealth < 1)
         {
-            anim.SetBool("dead", true);
+            anim.SetTrigger("dead");
             boxCollider.enabled = false;
             foreach (Behaviour component in components)
                 component.enabled = false;
         }
+    }
+    private void Deactivate()
+    {
+        gameObject.SetActive(false);
     }
 }

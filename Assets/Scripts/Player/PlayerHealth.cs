@@ -18,12 +18,17 @@ public class PlayerHealth : MonoBehaviour
     private bool touchingEnemy;
 
     private SpriteRenderer spi;
-
+    private Animator anim;
+    private BoxCollider2D boxCollider;
+    private Rigidbody2D rigidBody;
 
     void Start()
     {
         gameOver = false;
         spi = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
+        boxCollider = GetComponent<BoxCollider2D>();
+        rigidBody = GetComponent<Rigidbody2D>();
         currentHealth = startingHealth;
     }
 
@@ -47,10 +52,13 @@ public class PlayerHealth : MonoBehaviour
         {
             foreach (Behaviour component in components)
                 component.enabled = false;
-
+            boxCollider.enabled = false;
+            
+            anim.SetTrigger("dead");
             gameOver = true;
         }
         
+
     }
     private IEnumerator Invulnerability()
     {
@@ -89,5 +97,9 @@ public class PlayerHealth : MonoBehaviour
         {
             currentHealth = Mathf.Clamp(currentHealth + _hearts, 0, startingHealth);
         }
+    }
+    private void Deactivate()
+    {
+        gameObject.SetActive(false);
     }
 }
