@@ -54,6 +54,7 @@ public class PlayerHealth : MonoBehaviour
                 component.enabled = false;
             boxCollider.enabled = false;
             rigidBody.gravityScale = 0;
+            rigidBody.velocity = Vector2.zero;
             anim.SetTrigger("dead");
             gameOver = true;
         }
