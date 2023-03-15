@@ -7,11 +7,11 @@ public class ShootingPenguinAttack : MonoBehaviour
     [SerializeField] float rayDistance;
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private Transform playerLocation;
+    [SerializeField] private Transform holderPosition;
     [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject[] projectiles;
 
-    private BoxCollider2D boxCollider;
-    private bool playerSpotted;
+    [SerializeField] private BoxCollider2D boxCollider;
     private float attackWait;
     private double attackCooldown = 1;
     private Animator anim;
@@ -19,7 +19,6 @@ public class ShootingPenguinAttack : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        boxCollider = GetComponent<BoxCollider2D>();
     }
 
     void Update()
@@ -29,11 +28,11 @@ public class ShootingPenguinAttack : MonoBehaviour
 
         if (PlayerInRange())
         {
-            if (playerLocation.position.x > transform.position.x)
+            if (playerLocation.position.x > holderPosition.position.x)
             {
                 gameObject.transform.localScale = new Vector3(-1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
             }
-            else if (playerLocation.position.x < transform.position.x)
+            else if (playerLocation.position.x < holderPosition.position.x)
             {
                 gameObject.transform.localScale = new Vector3(1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
             }
@@ -44,7 +43,7 @@ public class ShootingPenguinAttack : MonoBehaviour
                 Attack();
             }
         }
-        
+
     }
     private bool PlayerInRange()
     {
@@ -65,4 +64,9 @@ public class ShootingPenguinAttack : MonoBehaviour
         }
         return 0;
     }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawWireCube(transform.position, new Vector3(boxCollider.bounds.size.x * rayDistance, boxCollider.bounds.size.y, boxCollider.bounds.size.z));
+    //}
 }
