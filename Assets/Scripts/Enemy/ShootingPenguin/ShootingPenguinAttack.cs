@@ -43,7 +43,6 @@ public class ShootingPenguinAttack : MonoBehaviour
                 Attack();
             }
         }
-
     }
     private bool PlayerInRange()
     {

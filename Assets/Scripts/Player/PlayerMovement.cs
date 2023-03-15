@@ -6,13 +6,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpPower;
 
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask platformLayer;
+    [SerializeField] private BoxCollider2D boxCollider;
 
     private Rigidbody2D body;
     private Animator anim;
-    private BoxCollider2D boxCollider;
     private float horizontalInput;
     private float verticalInput;
     private bool canJump;
+    public string platformName;
 
 
     void Start()
@@ -23,69 +25,90 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
     }
 
     void Update()
     {
-            float horizontalInput = Input.GetAxis("Horizontal");
+        OnPlatform();
+        float horizontalInput = Input.GetAxis("Horizontal");
+        body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
 
-            if (Input.GetKey(KeyCode.W))
-            {
-                anim.SetBool("lookUp", true);
-            }
-            else
-            {
-                anim.SetBool("lookUp", false);
-            }
+        if (Input.GetKey(KeyCode.W))
+        {
+            anim.SetBool("lookUp", true);
+        }
+        else
+        {
+            anim.SetBool("lookUp", false);
+        }
             
 
-            if (Input.GetMouseButton(0) || (Input.GetKey(KeyCode.E)))
-            {
-                anim.SetBool("shoot", true);
-            }
-            else anim.SetBool("shoot", false);
-
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                Jump();
-            }
-            if (isGrounded())
-            {
-                anim.SetBool("jump", false);
-            }
-            else
-            {
-                anim.SetBool("jump", true);
-            }
-
-            if (Input.GetKey(KeyCode.RightArrow) && !(Input.GetKey(KeyCode.LeftArrow)))
-            {
-                transform.position = transform.position + new Vector3(horizontalInput * speed * Time.deltaTime, verticalInput * speed * Time.deltaTime);
-                gameObject.transform.localScale = new Vector3(1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
-            }
-            if (Input.GetKey(KeyCode.LeftArrow) && !(Input.GetKey(KeyCode.RightArrow)))
+        if (Input.GetMouseButton(0) || (Input.GetKey(KeyCode.E)))
         {
-                transform.position = transform.position + new Vector3(horizontalInput * speed * Time.deltaTime, verticalInput * speed * Time.deltaTime);
-                gameObject.transform.localScale = new Vector3(-1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
-            }
-            anim.SetBool("run", horizontalInput != 0);
+            anim.SetBool("shoot", true);
+        }
+        else anim.SetBool("shoot", false);
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            Jump();
+        }
+        if (IsGrounded())
+        {
+            anim.SetBool("jump", false);
+        }
+        else
+        {
+            anim.SetBool("jump", true);
+        }
+
+        if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) && !(Input.GetKey(KeyCode.LeftArrow)))
+        {
+            gameObject.transform.localScale = new Vector3(1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
+        }
+        else if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) && !(Input.GetKey(KeyCode.RightArrow)))
+        {
+            gameObject.transform.localScale = new Vector3(-1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
+        }
+        else body.velocity = new Vector2(0, body.velocity.y);
+
+        anim.SetBool("run", horizontalInput != 0);
     }
     private void Jump()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            if (isGrounded())
+            if (IsGrounded())
             {
                 body.velocity = new Vector2(body.velocity.x, jumpPower);
                 anim.SetBool("jump", true);
             }
         }
     }
-    private bool isGrounded()
+    public bool IsGrounded()
     {
-        RaycastHit2D hit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
+        RaycastHit2D hit = Physics2D.BoxCast(new Vector3(boxCollider.bounds.center.x, boxCollider.bounds.center.y - (float)0.7, boxCollider.bounds.center.z), new Vector2((float)0.65, (float)0.2), 0, Vector2.down, 0.1f, groundLayer);
         return hit.collider != null;
     }
+//    private void OnDrawGizmos()
+//    {
+//        Gizmos.color = Color.red;
+//        Gizmos.DrawWireCube(new Vector3(boxCollider.bounds.center.x, boxCollider.bounds.center.y - (float)0.7, boxCollider.bounds.center.z), new Vector2((float)0.65, (float)0.2));
+//    }
+    private bool OnPlatform()
+    {
+        RaycastHit2D hit = Physics2D.BoxCast(new Vector3(boxCollider.bounds.center.x, boxCollider.bounds.center.y - (float)0.7, boxCollider.bounds.center.z), new Vector2((float)0.7, (float)0.1), 1, Vector2.down, 0.1f, platformLayer);
+        if (hit.collider != null)
+        {
+            platformName = hit.collider.gameObject.name;
+        }
+        else gameObject.transform.parent.transform.parent = null;
+        return hit.collider != null;
+    }
+//    private void OnDrawGizmos()
+//    {
+//        Gizmos.color = Color.red;
+//        Gizmos.DrawWireCube((new Vector3(boxCollider.bounds.center.x, boxCollider.bounds.center.y - (float)0.7, boxCollider.bounds.center.z)), new Vector2((float)0.7, (float)0.1));
+//    }
 }
