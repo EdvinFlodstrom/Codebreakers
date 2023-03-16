@@ -247,4 +247,8 @@ MonoBehaviour:
   speed: 2.5
   platform: {fileID: 7867803708047610742}
   boxCollider: {fileID: 7867803708047610747}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  player: {fileID: 0}
   movement: 0

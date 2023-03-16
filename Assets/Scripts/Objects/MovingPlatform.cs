@@ -7,9 +7,13 @@ public class MovingPlatform : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private Transform platform;
     [SerializeField] private BoxCollider2D boxCollider;
+    [SerializeField] private LayerMask playerLayer;
+    private Transform player;
     public float movement;
 
     private bool movingLeft;
+    private bool lockPlayer;
+    private GameObject playerObject;
     void Start()
     {
         
@@ -17,6 +21,10 @@ public class MovingPlatform : MonoBehaviour
 
     void Update()
     {
+        PlayerOnPlatform();
+
+        if (lockPlayer) playerObject.transform.parent.SetParent(transform);
+
         if (movingLeft)
         {
             if (platform.position.x >= leftEdge.position.x)
@@ -37,20 +45,23 @@ public class MovingPlatform : MonoBehaviour
         movement = _direction * speed;
         platform.position = new Vector3(platform.position.x + Time.deltaTime * movement, platform.position.y, platform.position.z);
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private bool PlayerOnPlatform()
     {
-        if (collision.gameObject.tag == "Player" && collision.gameObject.GetComponent<PlayerMovement>().platformName == gameObject.name)
+        RaycastHit2D hit = Physics2D.BoxCast(new Vector3(boxCollider.bounds.center.x, boxCollider.bounds.center.y + (float)0.2, boxCollider.bounds.center.z), new Vector2(boxCollider.bounds.size.x - (float)0.075, boxCollider.bounds.size.y), 1, Vector2.down, 0.1f, playerLayer);
+        if (hit.collider != null)
         {
-            collision.collider.transform.parent.SetParent(transform);
-            //collision.gameObject.GetComponent<PlayerMovement>().onPlatform = true;
+            player = hit.collider.gameObject.transform.parent;
+            player.transform.SetParent(transform);
         }
-    }
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Player" && collision.gameObject.GetComponent<PlayerMovement>().platformName == gameObject.name)
+        else
         {
-            collision.collider.transform.parent.SetParent(null);
-            //collision.gameObject.GetComponent<PlayerMovement>().onPlatform = false;
+            if (player != null) player.transform.SetParent(null);
         }
+        return hit.collider != null;
     }
+//    private void OnDrawGizmos()
+//    {
+//        Gizmos.color = Color.red;
+//        Gizmos.DrawWireCube((new Vector3(boxCollider.bounds.center.x, boxCollider.bounds.center.y + (float)0.2, boxCollider.bounds.center.z)), new Vector2(boxCollider.bounds.size.x - (float)0.075, boxCollider.bounds.size.y));
+//    }
 }

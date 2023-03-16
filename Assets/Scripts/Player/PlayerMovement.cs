@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
     private bool canJump;
-    public string platformName;
+    public bool onPlatform;
 
 
     void Start()
@@ -98,17 +98,21 @@ public class PlayerMovement : MonoBehaviour
 //    }
     private bool OnPlatform()
     {
-        RaycastHit2D hit = Physics2D.BoxCast(new Vector3(boxCollider.bounds.center.x, boxCollider.bounds.center.y - (float)0.7, boxCollider.bounds.center.z), new Vector2((float)0.7, (float)0.1), 1, Vector2.down, 0.1f, platformLayer);
+        RaycastHit2D hit = Physics2D.BoxCast(new Vector3(boxCollider.bounds.center.x, boxCollider.bounds.center.y - (float)0.75, boxCollider.bounds.center.z), new Vector2((float)0.7, (float)0.1), 1, Vector2.down, 0.1f, platformLayer);
         if (hit.collider != null)
         {
-            platformName = hit.collider.gameObject.name;
+            onPlatform = true;
         }
-        else gameObject.transform.parent.transform.parent = null;
+        else
+        {
+            //gameObject.transform.parent.transform.parent = null;
+            onPlatform = false;
+        }
         return hit.collider != null;
     }
 //    private void OnDrawGizmos()
 //    {
 //        Gizmos.color = Color.red;
-//        Gizmos.DrawWireCube((new Vector3(boxCollider.bounds.center.x, boxCollider.bounds.center.y - (float)0.7, boxCollider.bounds.center.z)), new Vector2((float)0.7, (float)0.1));
+//        Gizmos.DrawWireCube((new Vector3(boxCollider.bounds.center.x, boxCollider.bounds.center.y - (float)0.75, boxCollider.bounds.center.z)), new Vector2((float)0.7, (float)0.1));
 //    }
 }
