@@ -55,13 +55,19 @@ public class PlayerProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        
         if (col.gameObject.tag == "Enemy")
+        {
+            col.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
+        }
+        if (col.gameObject.tag != "Player" && col.gameObject.tag != "Untagged")
         {
             projectileHit = true;
             boxCollider.enabled = false;
-            col.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
-            gameObject.SetActive(false);
+            anim.SetTrigger("explode");
         }
+    }
+    private void Deactivate()
+    {
+        gameObject.SetActive(false);
     }
 }

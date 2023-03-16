@@ -105,13 +105,12 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            //gameObject.transform.parent.transform.parent = null;
             onPlatform = false;
         }
         return hit.collider != null;
     }
 //    private void OnDrawGizmos()
-//    {
+//   {
 //        Gizmos.color = Color.red;
 //        Gizmos.DrawWireCube((new Vector3(boxCollider.bounds.center.x, boxCollider.bounds.center.y - (float)0.75, boxCollider.bounds.center.z)), new Vector2((float)0.7, (float)0.1));
 //    }
