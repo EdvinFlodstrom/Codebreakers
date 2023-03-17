@@ -8,22 +8,16 @@ public class MovingPlatform : MonoBehaviour
     [SerializeField] private Transform platform;
     [SerializeField] private BoxCollider2D boxCollider;
     [SerializeField] private LayerMask playerLayer;
-    private Transform player;
+    private GameObject player;
     public float movement;
 
     private bool movingLeft;
     private bool lockPlayer;
     private GameObject playerObject;
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
         PlayerOnPlatform();
-
-        if (lockPlayer) playerObject.transform.parent.SetParent(transform);
 
         if (movingLeft)
         {
@@ -50,7 +44,7 @@ public class MovingPlatform : MonoBehaviour
         RaycastHit2D hit = Physics2D.BoxCast(new Vector3(boxCollider.bounds.center.x, boxCollider.bounds.center.y + (float)0.2, boxCollider.bounds.center.z), new Vector2(boxCollider.bounds.size.x - (float)0.075, boxCollider.bounds.size.y), 1, Vector2.down, 0.1f, playerLayer);
         if (hit.collider != null)
         {
-            player = hit.collider.gameObject.transform.parent;
+            player = hit.collider.gameObject;
             player.transform.SetParent(transform);
         }
         else
