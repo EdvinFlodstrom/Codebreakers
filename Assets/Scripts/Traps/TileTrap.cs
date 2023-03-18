@@ -5,7 +5,7 @@ public class TileTrap : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer RegularTile;
     [SerializeField] private SpriteRenderer RedTile;
-    [SerializeField] private GameObject penguin;
+    [SerializeField] private GameObject enemy;
     [SerializeField] private GameObject penguinTile;
     private BoxCollider2D boxCollider;
     private SpriteRenderer rend;
@@ -33,7 +33,7 @@ public class TileTrap : MonoBehaviour
             yield return new WaitForSeconds(.05f);
         }
         yield return new WaitForSeconds(0.4f);
-        penguin.SetActive(true);
+        enemy.SetActive(true);
         gameObject.SetActive(false);
     }
 }

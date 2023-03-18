@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 82027767946446409}
   - component: {fileID: 82027767946446410}
   - component: {fileID: 82027767946446411}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: RotatedLaserLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}

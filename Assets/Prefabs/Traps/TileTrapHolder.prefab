@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RegularTile: {fileID: 8132094120944465364}
   RedTile: {fileID: 8132094121208301620}
-  penguin: {fileID: 5371377574788140946}
+  enemy: {fileID: 5371377574788140946}
   penguinTile: {fileID: 8132094121208301626}
 --- !u!61 &8132094119653326588
 BoxCollider2D:
