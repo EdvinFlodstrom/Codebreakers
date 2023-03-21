@@ -61,8 +61,8 @@ public class PlayerAttack : MonoBehaviour
         }
         else
         {
-            rotatedLasersLeft[Projectile("regular")].transform.position = firePointRotated.position;
-            rotatedLasersLeft[Projectile("regular")].GetComponent<PlayerProjectile>().Direction(Mathf.Sign(transform.localScale.x));
+            rotatedLasersLeft[Projectile("rotatedLeft")].transform.position = firePointRotated.position;
+            rotatedLasersLeft[Projectile("rotatedLeft")].GetComponent<PlayerProjectile>().Direction(Mathf.Sign(transform.localScale.x));
         }
     }
 

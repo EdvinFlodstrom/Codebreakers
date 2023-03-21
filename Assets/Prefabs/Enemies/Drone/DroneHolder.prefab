@@ -308,7 +308,7 @@ MonoBehaviour:
   firepoint: {fileID: 7089118195076960184}
   leftEdge: {fileID: 7089118195572239449}
   rightEdge: {fileID: 7089118193839500396}
-  speed: 2.5
+  speed: 5
 --- !u!114 &7089118195702826955
 MonoBehaviour:
   m_ObjectHideFlags: 0

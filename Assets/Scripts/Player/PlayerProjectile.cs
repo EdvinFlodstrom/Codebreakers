@@ -59,7 +59,7 @@ public class PlayerProjectile : MonoBehaviour
         {
             col.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
         }
-        if (col.gameObject.tag != "Player")
+        if (col.gameObject.tag != "Player" && col.gameObject.tag != "Unshootable")
         {
             projectileHit = true;
             boxCollider.enabled = false;

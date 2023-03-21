@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8132094119653326588}
   m_Layer: 0
   m_Name: TileTrap
-  m_TagString: Untagged
+  m_TagString: Unshootable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
