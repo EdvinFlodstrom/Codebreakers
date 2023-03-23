@@ -6,6 +6,7 @@ public class Laser : MonoBehaviour
 
     [SerializeField] private Transform bottomObject;
     [SerializeField] private Transform topObject;
+    [SerializeField] private float laserScaleValue;
 
     private BoxCollider2D boxCollider;
     private Animator anim;
@@ -16,12 +17,7 @@ public class Laser : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
 
         transform.position = new Vector3(transform.position.x + transform.position.x, bottomObject.position.y + topObject.position.y) / 2f;
-        //^Placerar lasern i mitten (y-led) av de två objekten
-    }
-
-    void Update()
-    {
-        
+        transform.localScale = new Vector3(transform.localScale.x, topObject.transform.position.y - bottomObject.position.y - laserScaleValue, transform.localScale.z);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
