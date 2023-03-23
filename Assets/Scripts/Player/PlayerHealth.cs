@@ -13,7 +13,7 @@ public class PlayerHealth : MonoBehaviour
 
     public float currentHealth { get; private set; }
     private bool invulnerable;
-    private int invulnerabilityDuration = 1;
+    private float invulnerabilityDuration = 1;
     public bool gameOver;
     private bool touchingEnemy;
 
@@ -73,7 +73,7 @@ public class PlayerHealth : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Enemy")
+        if (col.gameObject.tag == "Enemy" || col.gameObject.tag == "Trap")
         {
             TakeDamage(1);
             touchingEnemy = true;
@@ -87,7 +87,7 @@ public class PlayerHealth : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Enemy")
+        if (col.gameObject.tag == "Enemy" || col.gameObject.tag == "Trap")
         {
             touchingEnemy = false;
         }

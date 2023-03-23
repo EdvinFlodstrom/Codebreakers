@@ -13,12 +13,15 @@ public class WallshooterAttack : MonoBehaviour
 
     private float attackWait;
     private float initialWait;
+    private int direction;
 
     private Animator anim;
 
     void Awake()
     {
         anim = GetComponent<Animator>();
+        if (firingRight) direction = 1;
+        else direction = -1;
     }
 
     void Update()
@@ -45,7 +48,7 @@ public class WallshooterAttack : MonoBehaviour
     private void Attack()
     {
         projectiles[Projectile()].transform.position = firePoint.position;
-        projectiles[Projectile()].GetComponent<WallshooterProjectile>().ActivateProjectile();
+        projectiles[Projectile()].GetComponent<WallshooterProjectile>().ActivateProjectile(direction);
     }
     private int Projectile()
     {

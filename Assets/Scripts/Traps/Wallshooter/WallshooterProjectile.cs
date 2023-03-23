@@ -5,7 +5,6 @@ public class WallshooterProjectile : MonoBehaviour
     [SerializeField] private float projectileSpeed;
     [SerializeField] private float flightDurationMax;
     [SerializeField] private int damage;
-    [SerializeField] private bool shootingLeft;
     private int direction;
     private bool projectileHit;
 
@@ -18,8 +17,6 @@ public class WallshooterProjectile : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
-        if (shootingLeft) direction = -1;
-        else direction = 1;
     }
 
     void Update()
@@ -34,11 +31,13 @@ public class WallshooterProjectile : MonoBehaviour
         if (flightDuration > flightDurationMax) gameObject.SetActive(false);
 
     }
-    public void ActivateProjectile()
+    public void ActivateProjectile(int _direction)
     {
+        direction = _direction;
         projectileHit = false;
         flightDuration = 0;
         gameObject.SetActive(true);
+        if (direction == 1) transform.localScale = new Vector2(-1, transform.localScale.y);
         boxCollider.enabled = true;
     }
     private void OnTriggerEnter2D(Collider2D collider)

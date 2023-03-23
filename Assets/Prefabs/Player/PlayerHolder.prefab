@@ -402,6 +402,7 @@ MonoBehaviour:
   - {fileID: 8918652478611031150}
   - {fileID: 8918652478611031155}
   - {fileID: 8918652478611031149}
+  invulnerabilityDuration: 0.25
   gameOver: 0
 --- !u!114 &8918652478611031149
 MonoBehaviour:

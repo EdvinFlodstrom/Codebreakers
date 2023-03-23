@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour
 {
+    [SerializeField] private bool verticalPlatform;
+    [SerializeField] private bool verticalMove;
+
     [SerializeField] private Transform leftEdge;
     [SerializeField] private Transform rightEdge;
     [SerializeField] private float speed;
@@ -12,6 +15,7 @@ public class MovingPlatform : MonoBehaviour
     public float movement;
 
     private bool movingLeft;
+    private bool movingUp;
     private bool lockPlayer;
     private GameObject playerObject;
 
@@ -19,25 +23,53 @@ public class MovingPlatform : MonoBehaviour
     {
         PlayerOnPlatform();
 
-        if (movingLeft)
+        if (!verticalPlatform)
         {
-            if (platform.position.x >= leftEdge.position.x)
-                MoveInDirection(-1);
+            if (movingLeft)
+            {
+                if (platform.position.x >= leftEdge.position.x)
+                    MoveInDirection(-1);
+                else
+                    movingLeft = !movingLeft;
+            }
             else
-                movingLeft = !movingLeft;
+            {
+                if (platform.position.x <= rightEdge.position.x)
+                    MoveInDirection(1);
+                else
+                    movingLeft = !movingLeft;
+            }
         }
-        else
+        else if (verticalPlatform && verticalMove)
         {
-            if (platform.position.x <= rightEdge.position.x)
-                MoveInDirection(1);
+            if (movingUp)
+            {
+                if (platform.position.y >= leftEdge.position.y)
+                    MoveInDirection(-1);
+                else
+                    movingUp = !movingUp;
+            }
             else
-                movingLeft = !movingLeft;
+            {
+                if (platform.position.y <= rightEdge.position.y)
+                    MoveInDirection(1);
+                else
+                    movingUp = !movingUp;
+            }
         }
     }
     private void MoveInDirection(int _direction)
     {
         movement = _direction * speed;
-        platform.position = new Vector3(platform.position.x + Time.deltaTime * movement, platform.position.y, platform.position.z);
+        if (!verticalPlatform)
+        {
+            platform.position = new Vector3(platform.position.x + Time.deltaTime * movement, platform.position.y, platform.position.z);
+        }
+        else
+        {
+            platform.position = new Vector3(platform.position.x, platform.position.y + Time.deltaTime * movement, platform.position.z);
+        }
+        
     }
     private bool PlayerOnPlatform()
     {
@@ -46,6 +78,7 @@ public class MovingPlatform : MonoBehaviour
         {
             player = hit.collider.gameObject;
             player.transform.SetParent(transform);
+            if (!verticalMove) verticalMove = true;
         }
         else
         {

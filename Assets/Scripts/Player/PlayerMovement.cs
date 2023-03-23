@@ -16,12 +16,6 @@ public class PlayerMovement : MonoBehaviour
     private bool canJump;
     public bool onPlatform;
 
-
-    void Start()
-    {
-
-    }
-
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
