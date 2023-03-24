@@ -3,15 +3,18 @@ using System.Threading;
 
 public class ShootingPenguinAttack : MonoBehaviour
 {
+    [SerializeField] private float damage;
     [SerializeField] int attackPower;
     [SerializeField] float rayDistance;
-    [SerializeField] private LayerMask playerLayer;
-    [SerializeField] private Transform playerLocation;
+    [SerializeField] private LayerMask playerLayer;    
     [SerializeField] private Transform holderPosition;
     [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject[] projectiles;
 
     [SerializeField] private BoxCollider2D boxCollider;
+
+    private Transform playerLocation;
+
     private float attackWait;
     private double attackCooldown = 1;
     private Animator anim;
@@ -47,6 +50,7 @@ public class ShootingPenguinAttack : MonoBehaviour
     private bool PlayerInRange()
     {
         RaycastHit2D hit = Physics2D.BoxCast(transform.position, new Vector3(boxCollider.bounds.size.x * rayDistance, boxCollider.bounds.size.y, boxCollider.bounds.size.z), 0, Vector2.left, 0, playerLayer);
+        if (hit.collider != null) playerLocation = hit.collider.gameObject.transform;
         return hit.collider != null;
     }
     private void Attack()
@@ -68,4 +72,11 @@ public class ShootingPenguinAttack : MonoBehaviour
     //    Gizmos.color = Color.red;
     //    Gizmos.DrawWireCube(transform.position, new Vector3(boxCollider.bounds.size.x * rayDistance, boxCollider.bounds.size.y, boxCollider.bounds.size.z));
     //}
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            collision.GetComponent<PlayerHealth>().TakeDamage(damage);
+        }
+    }
 }

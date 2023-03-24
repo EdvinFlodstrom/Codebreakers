@@ -339,7 +339,7 @@ Rigidbody2D:
   m_GravityScale: 2.75
   m_Material: {fileID: 6200000, guid: 5e559fc282a1f544da014fb42fc998a8, type: 2}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!114 &8918652478611031155
@@ -402,7 +402,7 @@ MonoBehaviour:
   - {fileID: 8918652478611031150}
   - {fileID: 8918652478611031155}
   - {fileID: 8918652478611031149}
-  invulnerabilityDuration: 0.25
+  invulnerable: 0
   gameOver: 0
 --- !u!114 &8918652478611031149
 MonoBehaviour:

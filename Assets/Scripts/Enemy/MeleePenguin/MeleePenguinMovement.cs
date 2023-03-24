@@ -51,4 +51,11 @@ public class MeleePenguinMovement : MonoBehaviour
     {
         penguin.position = new Vector3(penguin.position.x + Time.deltaTime * _direction * speed, penguin.position.y, penguin.position.z);
     }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            collision.GetComponent<PlayerHealth>().TakeDamage(damage);
+        }
+    }
 }

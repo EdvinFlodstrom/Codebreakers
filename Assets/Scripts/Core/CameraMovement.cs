@@ -11,6 +11,11 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private float upDistance;
     private float lookAhead;
 
+    private void Start()
+    {
+        Application.targetFrameRate = 60;
+    }
+
     void Update()
     {
         transform.position = new Vector3(player.position.x + lookAhead, player.position.y + upDistance, transform.position.z);

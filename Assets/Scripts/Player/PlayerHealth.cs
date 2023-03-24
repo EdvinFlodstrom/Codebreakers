@@ -12,7 +12,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private Behaviour[] components;
 
     public float currentHealth { get; private set; }
-    private bool invulnerable;
+    public bool invulnerable;
     private float invulnerabilityDuration = 1;
     public bool gameOver;
     private bool touchingEnemy;
@@ -34,10 +34,10 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
-        if (touchingEnemy && invulnerable == false)
-        {
-            TakeDamage(1);
-        }
+        //if (touchingEnemy && invulnerable == false)
+        //{
+        //   TakeDamage(1);
+        //}
     }
     public void TakeDamage(float _damage)
     {
@@ -48,7 +48,7 @@ public class PlayerHealth : MonoBehaviour
         {
             StartCoroutine(Invulnerability());
         }
-        else if (currentHealth == 0 || currentHealth < 0)
+        else if (currentHealth <= 0)
         {
             foreach (Behaviour component in components)
                 component.enabled = false;
@@ -73,23 +73,10 @@ public class PlayerHealth : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Enemy" || col.gameObject.tag == "Trap")
-        {
-            TakeDamage(1);
-            touchingEnemy = true;
-        }
-
         if (col.gameObject.tag == "Heart")
         {
             addHeart(1);
             col.gameObject.SetActive(false);
-        }
-    }
-    private void OnTriggerExit2D(Collider2D col)
-    {
-        if (col.gameObject.tag == "Enemy" || col.gameObject.tag == "Trap")
-        {
-            touchingEnemy = false;
         }
     }
     private void addHeart(float _hearts)
