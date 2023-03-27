@@ -11,7 +11,7 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private float upDistance;
     private float lookAhead;
 
-    private string follow = "Player";
+    public string follow = "Player";
 
     private void Start()
     {
