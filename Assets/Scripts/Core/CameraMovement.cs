@@ -11,6 +11,8 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private float upDistance;
     private float lookAhead;
 
+    private string follow = "Player";
+
     private void Start()
     {
         Application.targetFrameRate = 60;
@@ -18,7 +20,16 @@ public class CameraMovement : MonoBehaviour
 
     void Update()
     {
+        if (follow == "Player") FollowPlayer();
+        if (follow == "Kenneth") Kenneth();
+    }
+    private void FollowPlayer()
+    {
         transform.position = new Vector3(player.position.x + lookAhead, player.position.y + upDistance, transform.position.z);
         lookAhead = Mathf.Lerp(lookAhead, (aheadDistance * player.localScale.x), Time.deltaTime * cameraSpeed);
+    }
+    private void Kenneth()
+    {
+
     }
 }
