@@ -11,6 +11,12 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private float upDistance;
     private float lookAhead;
 
+    private float towardsIcewolf;
+    [SerializeField] private float toIcewolfValue;
+    [SerializeField] private float toIcewolfSpeed;
+
+    [SerializeField] private Transform icewolfCamera;
+
     public string follow = "Player";
 
     private void Start()
@@ -21,15 +27,22 @@ public class CameraMovement : MonoBehaviour
     void Update()
     {
         if (follow == "Player") FollowPlayer();
-        if (follow == "Kenneth") Kenneth();
+        if (follow == "Icewolf") Icewolf();
     }
     private void FollowPlayer()
     {
         transform.position = new Vector3(player.position.x + lookAhead, player.position.y + upDistance, transform.position.z);
         lookAhead = Mathf.Lerp(lookAhead, (aheadDistance * player.localScale.x), Time.deltaTime * cameraSpeed);
     }
-    private void Kenneth()
+    private void Icewolf()
     {
-
+        towardsIcewolf = Mathf.Lerp(towardsIcewolf, (toIcewolfValue * player.localScale.x), Time.deltaTime * toIcewolfSpeed);
+        transform.position = new Vector3(player.position.x + towardsIcewolf, transform.position.y, transform.position.z);
     }
+    //--Code broken--effekt?
+    //towardsIcewolf = Mathf.Lerp(aheadDistance, (toIcewolfValue* player.localScale.x), Time.deltaTime* toIcewolfSpeed);
+    //transform.position = new Vector3(player.position.x + towardsIcewolf, transform.position.y, transform.position.z);
+    //Towards icewolf: 1
+    //To icewolf value: 10
+    //To icewolf speed: 5
 }

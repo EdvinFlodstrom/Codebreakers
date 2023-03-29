@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float speed;
+    [SerializeField] public float speed;
     [SerializeField] private float jumpPower;
 
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask platformLayer;
     [SerializeField] private BoxCollider2D boxCollider;
 
-    private Rigidbody2D body;
-    private Animator anim;
+    public Rigidbody2D body;
+    public Animator anim;
     private float horizontalInput;
     private float verticalInput;
     private bool canJump;
@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else body.velocity = new Vector2(0, body.velocity.y);
 
-        anim.SetBool("run", horizontalInput != 0);
+        anim.SetBool("run", body.velocity.x != 0);
     }
     private void Jump()
     {

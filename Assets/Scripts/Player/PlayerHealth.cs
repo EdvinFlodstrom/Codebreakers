@@ -15,7 +15,6 @@ public class PlayerHealth : MonoBehaviour
     public bool invulnerable;
     private float invulnerabilityDuration = 1;
     public bool gameOver;
-    private bool touchingEnemy;
 
     private SpriteRenderer spi;
     private Animator anim;
@@ -30,14 +29,6 @@ public class PlayerHealth : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         rigidBody = GetComponent<Rigidbody2D>();
         currentHealth = startingHealth;
-    }
-
-    void Update()
-    {
-        //if (touchingEnemy && invulnerable == false)
-        //{
-        //   TakeDamage(1);
-        //}
     }
     public void TakeDamage(float _damage)
     {
@@ -57,9 +48,7 @@ public class PlayerHealth : MonoBehaviour
             rigidBody.velocity = Vector2.zero;
             anim.SetTrigger("dead");
             gameOver = true;
-        }
-        
-
+        }      
     }
     private IEnumerator Invulnerability()
     {
