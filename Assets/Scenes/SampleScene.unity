@@ -925,7 +925,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -8.553215, y: -2.2216158}
+  m_Offset: {x: -8.132179, y: -2.2216158}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -936,7 +936,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.517288, y: 5.4432316}
+  m_Size: {x: 4.6752167, y: 5.4432316}
   m_EdgeRadius: 0
 --- !u!4 &210495096
 Transform:
@@ -2190,7 +2190,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &509016430
 Transform:
   m_ObjectHideFlags: 0
@@ -2386,9 +2386,11 @@ MonoBehaviour:
   aheadDistance: 2.5
   cameraSpeed: 2
   upDistance: 1.5
-  toIcewolfValue: 9
-  toIcewolfSpeed: 4
   icewolfCamera: {fileID: 618368133}
+  toIcewolfValue: 11
+  toIcewolfSpeed: 0.75
+  toIcewolfValueY: 4
+  toIcewolfSpeedY: 2
   follow: Player
 --- !u!1001 &524640778
 PrefabInstance:

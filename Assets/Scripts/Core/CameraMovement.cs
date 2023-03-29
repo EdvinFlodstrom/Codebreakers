@@ -11,11 +11,19 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private float upDistance;
     private float lookAhead;
 
-    private float towardsIcewolf;
+
+    [SerializeField] private Transform icewolfCamera;
+    private float towardsIcewolfX;
+    private float towardsIcewolfY;
+
+    [Header("Camera to Icewolf X axis")]
     [SerializeField] private float toIcewolfValue;
     [SerializeField] private float toIcewolfSpeed;
 
-    [SerializeField] private Transform icewolfCamera;
+    [Header("Camera to Icewolf Y axis")]
+    [SerializeField] private float toIcewolfValueY;
+    [SerializeField] private float toIcewolfSpeedY;
+
 
     public string follow = "Player";
 
@@ -36,8 +44,9 @@ public class CameraMovement : MonoBehaviour
     }
     private void Icewolf()
     {
-        towardsIcewolf = Mathf.Lerp(towardsIcewolf, (toIcewolfValue * player.localScale.x), Time.deltaTime * toIcewolfSpeed);
-        transform.position = new Vector3(player.position.x + towardsIcewolf, transform.position.y, transform.position.z);
+        towardsIcewolfX = Mathf.Lerp(towardsIcewolfX, (toIcewolfValue * player.localScale.x), Time.deltaTime * toIcewolfSpeed);
+        towardsIcewolfY = Mathf.Lerp(towardsIcewolfY, (toIcewolfValueY * player.localScale.x), Time.deltaTime * toIcewolfSpeedY);
+        transform.position = new Vector3(player.position.x + lookAhead + towardsIcewolfX, player.position.y + upDistance + towardsIcewolfY, transform.position.z);             
     }
     //--Code broken--effekt?
     //towardsIcewolf = Mathf.Lerp(aheadDistance, (toIcewolfValue* player.localScale.x), Time.deltaTime* toIcewolfSpeed);
