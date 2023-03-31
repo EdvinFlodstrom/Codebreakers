@@ -8,6 +8,8 @@ public class IcewolfRoute : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float damage;
 
+    [SerializeField] private Transform playerPosition;
+
     
 
     void Awake()
@@ -17,6 +19,13 @@ public class IcewolfRoute : MonoBehaviour
 
     void Update()
     {
-        
+        if (playerPosition.transform.position.x > transform.position.x)
+        {
+            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+        }
+        else
+        {
+            transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+        }
     }
 }

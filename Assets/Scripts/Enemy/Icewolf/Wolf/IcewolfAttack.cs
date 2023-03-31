@@ -5,27 +5,24 @@ public class IcewolfAttack : MonoBehaviour
 {
     [SerializeField] private Transform firepoint;
     [SerializeField] private GameObject[] projectiles;
-    [Header("Minimum attack cooldown of 1.5s")]
-    [SerializeField] private float[] attackCooldownList;
     private float attackCooldown;
     private float attackWait;
 
     void Awake()
     {
-        //attackCooldown = 
+        attackCooldown = Mathf.Round(Random.Range(1.5f, 4));
     }
 
     void Update()
     {
         attackWait += Time.deltaTime;
 
-        if (attackCooldown > attackWait) Attack();
+        if (attackWait > attackCooldown) Attack();
     }
     private void Attack()
     {
-        Debug.Log(attackCooldown);
+        attackCooldown = Mathf.Round(Random.Range(2, 4));
         attackWait = 0;
-        attackCooldown = Random.Range(attackCooldownList[0], attackCooldownList.Length);
 
         projectiles[Projectile()].transform.position = firepoint.position;
         projectiles[Projectile()].GetComponent<IcewolfProjectile>().ProjectileDirection(Mathf.Sign(transform.localScale.x));

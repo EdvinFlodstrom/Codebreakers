@@ -48,6 +48,7 @@ public class Scene6Room : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         cameraObject.GetComponent<CameraMovement>().follow = "Bossfight";
         yield return new WaitForSeconds(1.5f);
+        icewolfObject.GetComponent<IcewolfFightStart>().InitiateFight();
         playerObject.GetComponent<PlayerMovement>().enabled = true;
         playerObject.GetComponent<PlayerAttack>().enabled = true;
         icewolfBallObject.GetComponent<IcewolfBallRoute>().body.gravityScale = 1;
