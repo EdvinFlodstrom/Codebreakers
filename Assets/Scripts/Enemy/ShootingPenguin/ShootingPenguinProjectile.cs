@@ -6,6 +6,8 @@ public class ShootingPenguinProjectile : MonoBehaviour
     [SerializeField] private int projectileSpeed;
     [SerializeField] private float maxFlightDuration;
 
+    [SerializeField] private AudioClip hitSound;
+
     private float flightDuration;
     private float direction;
     private bool projectileHit;
@@ -54,6 +56,7 @@ public class ShootingPenguinProjectile : MonoBehaviour
         }
         if (col.tag != "Enemy" && col.tag != "Heart")
         {
+            SoundManager.sound.PlaySound(hitSound);
             projectileHit = true;
             boxCollider.enabled = false;
             gameObject.SetActive(false);

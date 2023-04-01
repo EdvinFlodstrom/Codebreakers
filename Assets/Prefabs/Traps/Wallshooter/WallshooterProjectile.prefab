@@ -170,4 +170,4 @@ MonoBehaviour:
   projectileSpeed: 10
   flightDurationMax: 2
   damage: 1
-  shootingLeft: 1
+  explosionSound: {fileID: 8300000, guid: 0c075ec2011c76a4cadf7c8ee00c021b, type: 3}

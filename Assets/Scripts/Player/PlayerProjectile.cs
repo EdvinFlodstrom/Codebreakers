@@ -13,7 +13,9 @@ public class PlayerProjectile : MonoBehaviour
 
     private bool projectileHit;
     private BoxCollider2D boxCollider;
-    private Animator anim;    
+    private Animator anim;
+
+    [SerializeField] private AudioClip explosionSound;
 
     void Awake()
     {
@@ -48,9 +50,7 @@ public class PlayerProjectile : MonoBehaviour
         {
             localScaleX = -localScaleX;
         }
-
         transform.localScale = new Vector3(localScaleX, transform.localScale.y, transform.localScale.z);
-
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -61,6 +61,7 @@ public class PlayerProjectile : MonoBehaviour
         }
         if (col.gameObject.tag != "Player" && col.gameObject.tag != "Unshootable")
         {
+            SoundManager.sound.PlaySound(explosionSound);
             projectileHit = true;
             boxCollider.enabled = false;
             anim.SetTrigger("explode");

@@ -209,6 +209,7 @@ MonoBehaviour:
   - {fileID: 6720528626095660993}
   attackCooldown: 0.75
   initialCooldown: 0.75
+  attackSound: {fileID: 8300000, guid: 3b2506bbbb171034a946d76ed00f23a9, type: 3}
 --- !u!1 &66164769204238831
 GameObject:
   m_ObjectHideFlags: 0

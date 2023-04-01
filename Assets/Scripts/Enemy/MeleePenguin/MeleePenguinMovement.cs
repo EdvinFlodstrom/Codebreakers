@@ -6,15 +6,17 @@ public class MeleePenguinMovement : MonoBehaviour
     [SerializeField] private Transform rightEdge;
     [SerializeField] private float speed;
 
-    [SerializeField] private LayerMask playerLayer;
-    
     private bool movingLeft;
     [SerializeField] private int damage;
 
     [SerializeField] private Transform penguin;
 
-    private Animator anim;
+    [SerializeField] private AudioClip penguinWalkSound;
+    [SerializeField] private float penguinWalkSoundCooldown;
+    private float penguinWalkSoundWait;
+
     private BoxCollider2D boxCollider;
+    private Animator anim;
     private PlayerHealth playerHealth;
 
     void Start()
@@ -25,6 +27,14 @@ public class MeleePenguinMovement : MonoBehaviour
 
     void Update()
     {
+        penguinWalkSoundWait += Time.deltaTime;
+
+        if (penguinWalkSoundWait > penguinWalkSoundCooldown && GetComponent<EnemySoundRange>().PlayerInSoundRange())
+        {
+            penguinWalkSoundWait = 0;
+            SoundManager.sound.PlaySound(penguinWalkSound);
+        }
+
         if (movingLeft)
         {
             if (penguin.position.x >= leftEdge.position.x)

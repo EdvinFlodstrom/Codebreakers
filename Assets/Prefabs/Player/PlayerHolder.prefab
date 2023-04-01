@@ -282,7 +282,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1577858321
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9d41eb33d4cbe8b4d96b1638c16c0c24, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -363,7 +363,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   boxCollider: {fileID: 8918652478611031153}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 4608
+  jumpSound: {fileID: 8300000, guid: f44a67b81c477a8479ee6e5dba349270, type: 3}
+  walkSound: {fileID: 8300000, guid: 2490a4525a7c1fd46ab7a75db751c255, type: 3}
+  body: {fileID: 0}
+  anim: {fileID: 0}
   onPlatform: 0
+  walkingSoundCooldown: 0.3
 --- !u!95 &8918652478611031148
 Animator:
   serializedVersion: 4
@@ -402,6 +410,9 @@ MonoBehaviour:
   - {fileID: 8918652478611031150}
   - {fileID: 8918652478611031155}
   - {fileID: 8918652478611031149}
+  hurtSound: {fileID: 8300000, guid: 3967c1e8044ecde4aa676de1a57c0f3e, type: 3}
+  deathSound: {fileID: 8300000, guid: 0c075ec2011c76a4cadf7c8ee00c021b, type: 3}
+  heartPickupSound: {fileID: 8300000, guid: cdc62dd30d720ec45a0c3289cb5de506, type: 3}
   invulnerable: 0
   gameOver: 0
 --- !u!114 &8918652478611031149
@@ -418,6 +429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCooldown: 0.5
   attackDamage: 1
+  attackSound: {fileID: 8300000, guid: 6d38c4b129757834db11f9d907860f4a, type: 3}
   regularLasers:
   - {fileID: 8918652478781271576}
   - {fileID: 5350011244302510690}

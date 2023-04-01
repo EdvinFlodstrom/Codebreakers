@@ -4,6 +4,7 @@ public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private float attackCooldown;
     [SerializeField] private float attackDamage;
+    [SerializeField] private AudioClip attackSound;
     [SerializeField] private GameObject[] regularLasers;
     [SerializeField] private GameObject[] rotatedLasers;
     [SerializeField] private GameObject[] rotatedLasersLeft;
@@ -48,6 +49,7 @@ public class PlayerAttack : MonoBehaviour
     private void Attack(bool _up)
     {
         attackWait = 0;
+        SoundManager.sound.PlaySound(attackSound);
         
         if (_up && !left)
         {

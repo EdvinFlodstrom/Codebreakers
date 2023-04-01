@@ -209,6 +209,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHealth: 3
+  deathSound: {fileID: 8300000, guid: 0c075ec2011c76a4cadf7c8ee00c021b, type: 3}
+  hurtSound: {fileID: 8300000, guid: 8ecdbf6547d4a5540bd83c7ea5decd3a, type: 3}
   components:
   - {fileID: 172712480958294327}
   - {fileID: 172712480958294329}

@@ -8,6 +8,9 @@ public class EnemyHealth : MonoBehaviour
     private Animator anim;
     private BoxCollider2D boxCollider;
 
+    [SerializeField] private AudioClip deathSound;
+    [SerializeField] private AudioClip hurtSound;
+
     [Header("Components to be disabled")]
     [SerializeField] private Behaviour[] components;
 
@@ -21,21 +24,19 @@ public class EnemyHealth : MonoBehaviour
         enemyCurrentHealth = enemyHealth;
     }
 
-    void Update()
-    {
-        
-    }
     public void TakeDamage(float _damage)
     {
         enemyCurrentHealth = Mathf.Clamp(enemyCurrentHealth - _damage, 0, enemyHealth);
 
         if (enemyCurrentHealth < 1)
         {
+            SoundManager.sound.PlaySound(deathSound);
             anim.SetTrigger("dead");
             boxCollider.enabled = false;
             foreach (Behaviour component in components)
                 component.enabled = false;
         }
+        else SoundManager.sound.PlaySound(hurtSound);
     }
     private void Deactivate()
     {

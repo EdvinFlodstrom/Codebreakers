@@ -9,12 +9,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask platformLayer;
     [SerializeField] private BoxCollider2D boxCollider;
 
+    [SerializeField] private LayerMask enemyLayer;
+
+    [SerializeField] private AudioClip jumpSound;
+    [SerializeField] private AudioClip walkSound;
+
     public Rigidbody2D body;
     public Animator anim;
     private float horizontalInput;
     private float verticalInput;
     private bool canJump;
     public bool onPlatform;
+    
+    [SerializeField] private float walkingSoundCooldown;
+    private float walkingSoundWait;
 
     private void Awake()
     {
@@ -27,6 +35,17 @@ public class PlayerMovement : MonoBehaviour
         OnPlatform();
         float horizontalInput = Input.GetAxis("Horizontal");
         body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
+
+        walkingSoundWait += Time.deltaTime;
+
+        if (horizontalInput > 0.25 || horizontalInput < -0.25)
+        {
+            if (walkingSoundWait > walkingSoundCooldown && IsGrounded())
+            {
+                walkingSoundWait = 0;
+                SoundManager.sound.PlaySound(walkSound);
+            }          
+        }
 
         if (Input.GetKey(KeyCode.W))
         {
@@ -77,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 body.velocity = new Vector2(body.velocity.x, jumpPower);
                 anim.SetBool("jump", true);
+                SoundManager.sound.PlaySound(jumpSound);
             }
         }
     }
@@ -103,9 +123,9 @@ public class PlayerMovement : MonoBehaviour
         }
         return hit.collider != null;
     }
-//    private void OnDrawGizmos()
-//   {
-//        Gizmos.color = Color.red;
-//        Gizmos.DrawWireCube((new Vector3(boxCollider.bounds.center.x, boxCollider.bounds.center.y - (float)0.75, boxCollider.bounds.center.z)), new Vector2((float)0.7, (float)0.1));
-//    }
+    //    private void OnDrawGizmos()
+    //   {
+    //        Gizmos.color = Color.red;
+    //        Gizmos.DrawWireCube((new Vector3(boxCollider.bounds.center.x, boxCollider.bounds.center.y - (float)0.75, boxCollider.bounds.center.z)), new Vector2((float)0.7, (float)0.1));
+    //    }
 }

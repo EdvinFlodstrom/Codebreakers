@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: 6557072069318014405}
   - component: {fileID: 6557072069318014406}
   - component: {fileID: 6557072069318014407}
+  - component: {fileID: 4605819206495763766}
   m_Layer: 0
   m_Name: LaserObjectBot
   m_TagString: Untagged
@@ -227,6 +228,25 @@ MonoBehaviour:
   laser: {fileID: 6557072069614554896}
   laserActiveDuration: 2
   laserNotActiveDuration: 1.75
+  laserActivationSound: {fileID: 8300000, guid: eab19b8556d418f439899c4d96c1d7ff, type: 3}
+--- !u!114 &4605819206495763766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6557072069318014403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2254719da03ef1047a8bae78d1b710e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxCollider: {fileID: 6557072069614554898}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  soundRangeX: 15
+  soundRangeY: 15
 --- !u!1 &6557072069614554896
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,8 +274,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6557072069614554896}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.3, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.3000003, y: 0.00000011920929, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

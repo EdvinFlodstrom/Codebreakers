@@ -8,6 +8,8 @@ public class WallshooterProjectile : MonoBehaviour
     private int direction;
     private bool projectileHit;
 
+    [SerializeField] private AudioClip explosionSound;
+
     private Animator anim;
     private BoxCollider2D boxCollider;
 
@@ -46,6 +48,7 @@ public class WallshooterProjectile : MonoBehaviour
         {
             collider.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
         }
+        SoundManager.sound.PlaySound(explosionSound);
         anim.SetTrigger("explode");
         boxCollider.enabled = false;
         projectileHit = true;

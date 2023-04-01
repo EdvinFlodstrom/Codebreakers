@@ -11,6 +11,9 @@ public class PlayerHealth : MonoBehaviour
     [Header("Components to be disabled")]
     [SerializeField] private Behaviour[] components;
 
+    [SerializeField] private AudioClip hurtSound;
+    [SerializeField] private AudioClip deathSound;
+    [SerializeField] private AudioClip heartPickupSound;
     public float currentHealth { get; private set; }
     public bool invulnerable;
     private float invulnerabilityDuration = 1;
@@ -33,6 +36,8 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(float _damage)
     {
         if (invulnerable) return;
+
+        SoundManager.sound.PlaySound(hurtSound);
         currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);
 
         if (currentHealth > 0)
@@ -43,6 +48,7 @@ public class PlayerHealth : MonoBehaviour
         {
             foreach (Behaviour component in components)
                 component.enabled = false;
+            SoundManager.sound.PlaySound(deathSound);
             boxCollider.enabled = false;
             rigidBody.gravityScale = 0;
             rigidBody.velocity = Vector2.zero;
@@ -64,6 +70,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (col.gameObject.tag == "Heart")
         {
+            SoundManager.sound.PlaySound(heartPickupSound);
             addHeart(1);
             col.gameObject.SetActive(false);
         }

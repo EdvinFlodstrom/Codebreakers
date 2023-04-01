@@ -179,6 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b24230d08c50e4fb0cb5c373127ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firingRight: 0
   boxCollider: {fileID: 4110728285914208026}
   playerLayer:
     serializedVersion: 2
@@ -199,6 +200,7 @@ MonoBehaviour:
   - {fileID: 7251692828361840284}
   attackCooldown: 0.35
   initialCooldown: 0.5
+  attackSound: {fileID: 8300000, guid: 3b2506bbbb171034a946d76ed00f23a9, type: 3}
 --- !u!1 &4110728285990138034
 GameObject:
   m_ObjectHideFlags: 0

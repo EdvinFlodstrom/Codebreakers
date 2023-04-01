@@ -11,6 +11,8 @@ public class WallshooterAttack : MonoBehaviour
     [SerializeField] private double attackCooldown;
     [SerializeField] private double initialCooldown;
 
+    [SerializeField] private AudioClip attackSound;
+
     private float attackWait;
     private float initialWait;
     private int direction;
@@ -35,6 +37,7 @@ public class WallshooterAttack : MonoBehaviour
             if (attackWait > attackCooldown && initialWait > initialCooldown)
             {
                 attackWait = 0;
+                SoundManager.sound.PlaySound(attackSound);
                 Attack();
             }
         }

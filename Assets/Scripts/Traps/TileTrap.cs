@@ -10,6 +10,8 @@ public class TileTrap : MonoBehaviour
     private BoxCollider2D boxCollider;
     private SpriteRenderer rend;
 
+    [SerializeField] private AudioClip tileActivationSound;
+
     void Awake()
     {
         boxCollider = GetComponent<BoxCollider2D>();
@@ -20,6 +22,7 @@ public class TileTrap : MonoBehaviour
         if (collision.tag == "Player")
         {
             RegularTile.enabled = false;
+            SoundManager.sound.PlaySound(tileActivationSound);
             StartCoroutine(TileActivition());
         }
     }

@@ -6,6 +6,9 @@ public class DroneProjectile : MonoBehaviour
     [SerializeField] private float damage;
     [SerializeField] private float explosionRadius;
     [SerializeField] private BoxCollider2D boxCollider;
+
+    [SerializeField] private AudioClip explosionSound;
+
     private Rigidbody2D body;
     private Animator anim;
 
@@ -29,6 +32,7 @@ public class DroneProjectile : MonoBehaviour
         {
             player.GetComponent<PlayerHealth>().TakeDamage(damage);
         }
+        SoundManager.sound.PlaySound(explosionSound);
         anim.SetTrigger("explode");
         boxCollider.enabled = false;
         body.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezePositionX;

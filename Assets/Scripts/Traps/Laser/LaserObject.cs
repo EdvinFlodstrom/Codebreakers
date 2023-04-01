@@ -16,6 +16,8 @@ public class LaserObject : MonoBehaviour
     private Animator anim;
     private Animator otherAnim;
 
+    [SerializeField] private AudioClip laserActivationSound;
+
     void Awake()
     {
         anim = GetComponent<Animator>();
@@ -47,6 +49,7 @@ public class LaserObject : MonoBehaviour
     private void ActivateLaser()
     {
         laser.SetActive(true);
+        if (GetComponent<EnemySoundRange>().PlayerInSoundRange()) SoundManager.sound.PlaySound(laserActivationSound);
     }
     private void DeactivateLaser()
     {

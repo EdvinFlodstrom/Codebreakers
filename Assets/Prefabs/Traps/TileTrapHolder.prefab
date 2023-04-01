@@ -51,6 +51,7 @@ MonoBehaviour:
   RedTile: {fileID: 8132094121208301620}
   enemy: {fileID: 5371377574788140946}
   penguinTile: {fileID: 8132094121208301626}
+  tileActivationSound: {fileID: 8300000, guid: 0f2b7400386bbb24d99f47fa82a268d9, type: 3}
 --- !u!61 &8132094119653326588
 BoxCollider2D:
   m_ObjectHideFlags: 0

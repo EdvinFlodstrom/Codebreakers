@@ -80,6 +80,7 @@ GameObject:
   - component: {fileID: 4202412565060784967}
   - component: {fileID: 4202412565060784964}
   - component: {fileID: 7059693816197263271}
+  - component: {fileID: 831838261436144185}
   m_Layer: 0
   m_Name: MeleePenguin
   m_TagString: Enemy
@@ -236,11 +237,10 @@ MonoBehaviour:
   leftEdge: {fileID: 4202412565390894837}
   rightEdge: {fileID: 4202412564532579597}
   speed: 3.5
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 256
   damage: 1
   penguin: {fileID: 4202412565060784965}
+  penguinWalkSound: {fileID: 8300000, guid: f95d749ee8dc09c4387cb2db521d33d2, type: 3}
+  penguinWalkSoundCooldown: 0.35
 --- !u!114 &7059693816197263271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,9 +254,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHealth: 5
+  deathSound: {fileID: 8300000, guid: 0c075ec2011c76a4cadf7c8ee00c021b, type: 3}
+  hurtSound: {fileID: 8300000, guid: 8ecdbf6547d4a5540bd83c7ea5decd3a, type: 3}
   components:
   - {fileID: 7059693816197263271}
   - {fileID: 4202412565060784964}
+  - {fileID: 831838261436144185}
+--- !u!114 &831838261436144185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4202412565060784969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2254719da03ef1047a8bae78d1b710e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxCollider: {fileID: 4202412565060784968}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  soundRangeX: 32.5
+  soundRangeY: 20
 --- !u!1 &4202412565390894842
 GameObject:
   m_ObjectHideFlags: 0
