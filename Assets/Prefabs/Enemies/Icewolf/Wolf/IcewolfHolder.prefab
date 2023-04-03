@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5215886272429362232}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.88, y: -6.108352, z: 0}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -197,6 +197,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHealth: 20
+  deathSound: {fileID: 8300000, guid: 0c075ec2011c76a4cadf7c8ee00c021b, type: 3}
+  hurtSound: {fileID: 8300000, guid: 8ecdbf6547d4a5540bd83c7ea5decd3a, type: 3}
   components:
   - {fileID: 5215886272448641959}
   - {fileID: 5215886272448641958}
@@ -220,6 +222,7 @@ MonoBehaviour:
   - {fileID: 6640606485717858159}
   - {fileID: 7017875389563152639}
   - {fileID: 4257842429801428379}
+  anim: {fileID: 0}
 --- !u!114 &5215886272448641958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,8 +236,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
-  speed: 3
+  speed: 2
   damage: 1
+  playerPosition: {fileID: 0}
+  leftEdge: {fileID: 5215886273770579576}
+  rightEdge: {fileID: 5215886272429362233}
+  toEdgesValue: 4
 --- !u!1 &5215886272453266464
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,6 +482,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHealth: 30
+  deathSound: {fileID: 8300000, guid: 0c075ec2011c76a4cadf7c8ee00c021b, type: 3}
+  hurtSound: {fileID: 8300000, guid: 8ecdbf6547d4a5540bd83c7ea5decd3a, type: 3}
   components:
   - {fileID: 5215886273095290456}
 --- !u!114 &5215886273095290456
@@ -581,7 +590,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5215886273770579583}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.63, y: -6.108352, z: 0}
+  m_LocalPosition: {x: -16.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

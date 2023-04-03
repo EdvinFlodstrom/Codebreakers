@@ -9504,6 +9504,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: WallshooterHolder
       objectReference: {fileID: 0}
+    - target: {fileID: 4110728285914208007, guid: f6265f7e4fa5113418f0e280595bf10d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4110728285914208007, guid: f6265f7e4fa5113418f0e280595bf10d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6265f7e4fa5113418f0e280595bf10d, type: 3}
 --- !u!1001 &4172353166322916805
@@ -9669,11 +9677,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 513351356689818594, guid: 727948a39ae1dac4a9363738bc50246c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 122.55
+      value: 122.71
       objectReference: {fileID: 0}
     - target: {fileID: 513351356689818594, guid: 727948a39ae1dac4a9363738bc50246c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 28.08
+      value: 28.12
       objectReference: {fileID: 0}
     - target: {fileID: 513351356689818594, guid: 727948a39ae1dac4a9363738bc50246c, type: 3}
       propertyPath: m_LocalPosition.z

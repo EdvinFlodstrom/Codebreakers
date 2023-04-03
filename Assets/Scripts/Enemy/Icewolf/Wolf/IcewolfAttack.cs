@@ -8,8 +8,11 @@ public class IcewolfAttack : MonoBehaviour
     private float attackCooldown;
     private float attackWait;
 
+    [SerializeField] private Animator anim;
+
     void Awake()
     {
+        anim = GetComponent<Animator>();
         attackCooldown = Mathf.Round(Random.Range(1.5f, 4));
     }
 
@@ -17,7 +20,7 @@ public class IcewolfAttack : MonoBehaviour
     {
         attackWait += Time.deltaTime;
 
-        if (attackWait > attackCooldown) Attack();
+        if (attackWait > attackCooldown) anim.SetTrigger("attack");
     }
     private void Attack()
     {
@@ -35,5 +38,9 @@ public class IcewolfAttack : MonoBehaviour
                 return i;
         }
         return 0;
+    }
+    private void Idle()
+    {
+        anim.SetTrigger("idle");
     }
 }
