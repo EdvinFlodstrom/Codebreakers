@@ -14,50 +14,43 @@ public class IcewolfRoute : MonoBehaviour
     [SerializeField] private Transform rightEdge;
     private bool movingLeft;
 
-    [SerializeField] private float toEdgesValue;
-    private float toLeftEdgeValue;
-    private float toRightEdgeValue;
+    [Header("Camera to Icewolf X axis")]
+    [SerializeField] private float movementTime;
+    private float leftToRightPosX;
+    private float RightToLeftPosX;
 
-    private float toLeftEdge;
-    private float toRightEdge;
+    private Vector3 velocity = Vector3.zero;
 
-    private float currentPosX;
-    
+
 
     void Awake()
     {
-        currentPosX = transform.position.x;
-        toLeftEdgeValue = toEdgesValue;
-        toRightEdgeValue = toEdgesValue;
+        leftToRightPosX = leftEdge.position.x + 0.5f;
+        RightToLeftPosX = rightEdge.position.x - 0.5f;
         anim = GetComponent<Animator>();
     }
 
     void Update()
     {
-
         if (movingLeft)
         {
-            if (transform.position.x >= leftEdge.position.x)
-            {
-                toLeftEdge = Mathf.Lerp(toLeftEdge, (toLeftEdgeValue * transform.localScale.x), Time.deltaTime * speed);
-                transform.position = new Vector3(currentPosX - toLeftEdge, transform.position.y, transform.position.z);
+            if (transform.position.x >= leftToRightPosX)
+            {          
+                transform.position = Vector3.SmoothDamp(transform.position, leftEdge.position, ref velocity, movementTime);
             }
             else
             {
-                currentPosX = leftEdge.position.x;
                 movingLeft = !movingLeft;
             }
         }
         else
         {
-            if (transform.position.x <= rightEdge.position.x)
-            {
-                toRightEdge = Mathf.Lerp(toRightEdge, (toRightEdgeValue * transform.localScale.x), Time.deltaTime * speed);
-                transform.position = new Vector3(currentPosX + toRightEdge, transform.position.y, transform.position.z);
+            if (transform.position.x <= RightToLeftPosX)
+            {                
+                transform.position = Vector3.SmoothDamp(transform.position, rightEdge.position, ref velocity, movementTime);
             }
             else
             {
-                currentPosX = rightEdge.position.x;
                 movingLeft = !movingLeft;
             }
         }

@@ -5,10 +5,11 @@ public class IcewolfAttack : MonoBehaviour
 {
     [SerializeField] private Transform firepoint;
     [SerializeField] private GameObject[] projectiles;
+    [SerializeField] private AudioClip attackSound;
     private float attackCooldown;
     private float attackWait;
 
-    [SerializeField] private Animator anim;
+    private Animator anim;
 
     void Awake()
     {
@@ -24,7 +25,8 @@ public class IcewolfAttack : MonoBehaviour
     }
     private void Attack()
     {
-        attackCooldown = Mathf.Round(Random.Range(2, 4));
+        SoundManager.sound.PlaySound(attackSound);
+        attackCooldown = Mathf.Round(Random.Range(2, 3));
         attackWait = 0;
 
         projectiles[Projectile()].transform.position = firepoint.position;
