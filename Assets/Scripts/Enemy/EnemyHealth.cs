@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] private float enemyHealth;
-    private float enemyCurrentHealth;
+    [System.NonSerialized] public float enemyCurrentHealth;
 
     private Animator anim;
     private BoxCollider2D boxCollider;
@@ -11,7 +11,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private AudioClip deathSound;
     [SerializeField] private AudioClip hurtSound;
 
-    [Header("Components to be disabled")]
+    [Header("Disable components on death")]
     [SerializeField] private Behaviour[] components;
 
     private void Awake()

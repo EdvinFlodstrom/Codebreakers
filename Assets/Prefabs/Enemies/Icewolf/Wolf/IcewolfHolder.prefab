@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ad983291d94cbb40a93a7966ec58028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 10
+  enemyHealth: 15
   deathSound: {fileID: 8300000, guid: 0c075ec2011c76a4cadf7c8ee00c021b, type: 3}
   hurtSound: {fileID: 8300000, guid: 8ecdbf6547d4a5540bd83c7ea5decd3a, type: 3}
   components:

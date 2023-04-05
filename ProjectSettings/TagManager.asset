@@ -10,6 +10,8 @@ TagManager:
   - Heart
   - Unshootable
   - Trap
+  - PlayerProjectile
+  - BossProjectile
   layers:
   - Default
   - TransparentFX

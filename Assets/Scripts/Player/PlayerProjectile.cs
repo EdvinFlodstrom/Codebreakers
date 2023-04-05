@@ -4,7 +4,7 @@ public class PlayerProjectile : MonoBehaviour
 {
     [SerializeField] private float projectileSpeed;
     [SerializeField] private float flightDurationMax;
-    [SerializeField] private int damage;
+    [SerializeField] public int damage;
 
     [SerializeField] private Transform playerLocation;
 

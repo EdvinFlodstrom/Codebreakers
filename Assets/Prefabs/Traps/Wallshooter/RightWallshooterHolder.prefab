@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 66164769145937479}
   - component: {fileID: 66164769145937496}
   - component: {fileID: 2717112387967838501}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wallshooter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
