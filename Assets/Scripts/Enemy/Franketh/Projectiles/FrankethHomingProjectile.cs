@@ -22,6 +22,13 @@ public class FrankethHomingProjectile : MonoBehaviour
         if (projectileHit) return;
 
         transform.position = new Vector3(transform.position.x + Time.deltaTime * -speed, transform.position.y, transform.position.z);
+
+        if (projectileHealth < 1)
+        {
+            projectileHit = true;
+            anim.SetTrigger("explode");
+            boxCollider.enabled = false;
+        }
     }
     public void ActivateProjectile()
     {
@@ -30,17 +37,17 @@ public class FrankethHomingProjectile : MonoBehaviour
         boxCollider.enabled = true;
         gameObject.SetActive(true);
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "PlayerProjectile")
+        if (collision.tag == "PlayerProjectile")
         {
-            projectileHealth = projectileHealth - collision.gameObject.GetComponent<PlayerProjectile>().damage;
+            projectileHealth = projectileHealth - collision.GetComponent<PlayerProjectile>().damage;
         }
-        if (collision.gameObject.tag == "Player")
+        if (collision.tag == "Player")
         {
-            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
+            collision.GetComponent<PlayerHealth>().TakeDamage(damage);
         }
-        if (collision.gameObject.tag != "Enemy" && collision.gameObject.tag != "Boss" && collision.gameObject.tag != "PlayerProjectile" && collision.gameObject.tag != "BossProjectile")
+        if (collision.tag != "Enemy" && collision.tag != "Boss" && collision.tag != "PlayerProjectile" && collision.tag != "BossProjectile")
         {
             projectileHit = true;
             anim.SetTrigger("explode");

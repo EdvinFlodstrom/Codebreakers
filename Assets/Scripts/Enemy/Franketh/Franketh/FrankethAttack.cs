@@ -6,6 +6,7 @@ public class FrankethAttack : MonoBehaviour
     [SerializeField] private Transform firepoint;
     [SerializeField] private Transform firepointDown;
     [SerializeField] private Transform firepointUp;
+    [SerializeField] private Transform firepointHoming;
     [SerializeField] private GameObject[] regularProjectiles;
     [SerializeField] private GameObject[] homingProjectiles;
     [SerializeField] private AudioClip attackSound;
@@ -28,27 +29,29 @@ public class FrankethAttack : MonoBehaviour
         
         if (attackWait > attackCooldown)
         {
+            attackWait = 0;
             attackType = RandomChoice();
             Attack(attackType);
         }
     }
     private void Attack(string _type)
     {
-        SoundManager.sound.PlaySound(attackSound);
         if (_type != "Layer")
         {
-            attackWait = 0;
             anim.SetTrigger("attack");
+            SoundManager.sound.PlaySound(attackSound);
         }
 
         if (_type == "Regular")
         {
-            regularProjectiles[RegularProjectile()].transform.position = firepoint.position;
+            attackWait = 1;
+            regularProjectiles[RegularProjectile()].transform.position = firepointDown.position;
             regularProjectiles[RegularProjectile()].GetComponent<FrankethRegularProjectile>().ActivateProjectile();
         }
         else if (_type == "Homing")
         {
-            homingProjectiles[HomingProjectile()].transform.position = firepoint.position;
+            attackWait = 0;
+            homingProjectiles[HomingProjectile()].transform.position = firepointHoming.position;
             homingProjectiles[HomingProjectile()].GetComponent<FrankethHomingProjectile>().ActivateProjectile();
         }
         else if (_type == "Layer")
@@ -77,20 +80,23 @@ public class FrankethAttack : MonoBehaviour
     IEnumerator LayerProjectile()
     {
         anim.SetBool("layerAttack", true);
-        homingProjectiles[RegularProjectile()].transform.position = firepointDown.position;
+        SoundManager.sound.PlaySound(attackSound);
+        regularProjectiles[RegularProjectile()].transform.position = firepointDown.position;
         regularProjectiles[RegularProjectile()].GetComponent<FrankethRegularProjectile>().ActivateProjectile();
 
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.5f);
 
-        homingProjectiles[RegularProjectile()].transform.position = firepointUp.position;
+        SoundManager.sound.PlaySound(attackSound);
+        regularProjectiles[RegularProjectile()].transform.position = firepointUp.position;
         regularProjectiles[RegularProjectile()].GetComponent<FrankethRegularProjectile>().ActivateProjectile();
 
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.5f);
 
-        homingProjectiles[RegularProjectile()].transform.position = firepointDown.position;
+        SoundManager.sound.PlaySound(attackSound);
+        regularProjectiles[RegularProjectile()].transform.position = firepointDown.position;
         regularProjectiles[RegularProjectile()].GetComponent<FrankethRegularProjectile>().ActivateProjectile();
 
-        attackWait = 0;
+        attackWait = 0.5f;
         yield return new WaitForSeconds(0.5f);
         anim.SetBool("layerAttack", false);
     }

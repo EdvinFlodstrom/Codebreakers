@@ -27,13 +27,13 @@ public class FrankethRegularProjectile : MonoBehaviour
         boxCollider.enabled = true;
         gameObject.SetActive(true);
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.tag == "Player")
         {
-            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
+            collision.GetComponent<PlayerHealth>().TakeDamage(damage);
         }
-        if (collision.gameObject.tag != "Enemy" && collision.gameObject.tag != "Boss" && collision.gameObject.tag != "BossProjectile")
+        if (collision.tag != "Enemy" && collision.tag != "Boss" && collision.tag != "BossProjectile" && collision.tag != "PlayerProjectile")
         {
             projectileHit = true;
             anim.SetTrigger("explode");

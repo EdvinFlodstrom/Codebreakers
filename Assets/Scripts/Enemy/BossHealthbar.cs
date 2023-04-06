@@ -30,6 +30,10 @@ public class BossHealthbar : MonoBehaviour
 
     private float frankethMaxHealth;
     private float frankethCurrentHealth;
+
+    private bool icewolfDead;
+    private bool frankethDead;
+    private bool frankethPhase2;
     
 
     void Awake()
@@ -39,19 +43,32 @@ public class BossHealthbar : MonoBehaviour
 
     void Update()
     {
-
         if (!icewolfHealthbar.activeInHierarchy && !frankethHealthbar.activeInHierarchy) return;
 
         if (icewolfHealthbar.activeInHierarchy)
         {
             icewolfCurrentHealth = icewolfHealth.enemyCurrentHealth + ballHealth.enemyCurrentHealth;
             icewolfHealthbarFull.fillAmount = icewolfCurrentHealth / icewolfMaxHealth;
-            if (icewolfCurrentHealth < 1) StartCoroutine(DeactivateIcewolf());
+            if (icewolfCurrentHealth < 1 && !icewolfDead)
+            {
+                icewolfDead = true;
+                StartCoroutine(DeactivateIcewolf());
+            }
         }
         if (frankethHealthbar.activeInHierarchy)
         {
             frankethCurrentHealth = frankethHealth.enemyCurrentHealth;
-            icewolfHealthbarFull.fillAmount = frankethCurrentHealth / frankethMaxHealth;
+            frankethHealthbarFull.fillAmount = frankethCurrentHealth / frankethMaxHealth;
+            if (frankethCurrentHealth <= frankethMaxHealth / 2 && !frankethPhase2)
+            {
+                frankethPhase2 = true;
+                bossRoom.StartCoroutine(bossRoom.FrankethSecondPhase());
+            }
+            if (frankethCurrentHealth < 1 && !frankethDead)
+            {
+                frankethDead = true;
+                StartCoroutine(DeactivateFranketh());
+            }
         }
     }
     public void ActivateIcewolf()
@@ -70,11 +87,11 @@ public class BossHealthbar : MonoBehaviour
     public void ActivateFranketh()
     {
         frankethMaxHealth = frankethHealth.enemyCurrentHealth;
-        frankethCurrentHealth = frankethMaxHealth;
         frankethHealthbar.SetActive(true);
     }
-    public void DeactivateFranketh()
+    IEnumerator DeactivateFranketh()
     {
+        yield return new WaitForSeconds(1);
         frankethHealthbar.SetActive(false);
     }
 }

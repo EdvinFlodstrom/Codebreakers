@@ -12,6 +12,7 @@ TagManager:
   - Trap
   - PlayerProjectile
   - BossProjectile
+  - Invulnerable
   layers:
   - Default
   - TransparentFX

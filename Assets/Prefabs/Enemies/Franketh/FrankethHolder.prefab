@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1736049103738822331
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9184428333268295759}
+  m_Layer: 0
+  m_Name: FirepointHoming
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9184428333268295759
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736049103738822331}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.6799988, y: -3.66, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8448273135896470994}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4617335395567386282
 GameObject:
   m_ObjectHideFlags: 0
@@ -24,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4617335395567386282}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.62, y: -1.65, z: 0}
+  m_LocalPosition: {x: -1.6799976, y: -1.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -55,7 +86,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7455169646396644352}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.62, y: -3.46, z: 0}
+  m_LocalPosition: {x: -1.68, y: -3.87, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -200,6 +231,7 @@ Transform:
   - {fileID: 8448273135709690989}
   - {fileID: 534505551484713396}
   - {fileID: 3947735520620312358}
+  - {fileID: 2406670021579815683}
   m_Father: {fileID: 8448273134976353473}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -217,9 +249,9 @@ GameObject:
   - component: {fileID: 8448273135896470995}
   - component: {fileID: 1057347906053005008}
   - component: {fileID: 2284063086958653514}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Franketh
-  m_TagString: Untagged
+  m_TagString: Invulnerable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -239,6 +271,7 @@ Transform:
   - {fileID: 7264920978959273425}
   - {fileID: 347199150784732271}
   - {fileID: 655505112551395352}
+  - {fileID: 9184428333268295759}
   m_Father: {fileID: 8448273133857532078}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -355,6 +388,7 @@ MonoBehaviour:
   firepoint: {fileID: 7264920978959273425}
   firepointDown: {fileID: 347199150784732271}
   firepointUp: {fileID: 655505112551395352}
+  firepointHoming: {fileID: 9184428333268295759}
   regularProjectiles:
   - {fileID: 8448273135511716010}
   - {fileID: 2182376484803629728}
@@ -370,6 +404,7 @@ MonoBehaviour:
   - {fileID: 8448273135709690988}
   - {fileID: 534505551484713397}
   - {fileID: 3947735520620312359}
+  - {fileID: 2406670021579815682}
   attackSound: {fileID: 8300000, guid: 7b4acea9d6967e04aa99755918555f92, type: 3}
   attackCooldown: 2
   touchingDamage: 1
@@ -415,7 +450,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9200979980799463205}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.62, y: -2.43, z: 0}
+  m_LocalPosition: {x: -1.6799976, y: -3.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1225,6 +1260,73 @@ GameObject:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1457090354969043956, guid: f58e4a971a234a843a743878b1995781, type: 3}
   m_PrefabInstance: {fileID: 7008810595067972223}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7741982361527227057
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8448273135746392630}
+    m_Modifications:
+    - target: {fileID: 5338804406453479858, guid: d394c13c5436b534b9a8d605b4aea828, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5338804406453479858, guid: d394c13c5436b534b9a8d605b4aea828, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 5338804406453479858, guid: d394c13c5436b534b9a8d605b4aea828, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 5338804406453479858, guid: d394c13c5436b534b9a8d605b4aea828, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5338804406453479858, guid: d394c13c5436b534b9a8d605b4aea828, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5338804406453479858, guid: d394c13c5436b534b9a8d605b4aea828, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5338804406453479858, guid: d394c13c5436b534b9a8d605b4aea828, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5338804406453479858, guid: d394c13c5436b534b9a8d605b4aea828, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5338804406453479858, guid: d394c13c5436b534b9a8d605b4aea828, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5338804406453479858, guid: d394c13c5436b534b9a8d605b4aea828, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5338804406453479858, guid: d394c13c5436b534b9a8d605b4aea828, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5338804406453479859, guid: d394c13c5436b534b9a8d605b4aea828, type: 3}
+      propertyPath: m_Name
+      value: HomingFireballProjectile (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d394c13c5436b534b9a8d605b4aea828, type: 3}
+--- !u!1 &2406670021579815682 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5338804406453479859, guid: d394c13c5436b534b9a8d605b4aea828, type: 3}
+  m_PrefabInstance: {fileID: 7741982361527227057}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2406670021579815683 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5338804406453479858, guid: d394c13c5436b534b9a8d605b4aea828, type: 3}
+  m_PrefabInstance: {fileID: 7741982361527227057}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8997649826437979796
 PrefabInstance:

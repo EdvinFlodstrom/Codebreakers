@@ -55,11 +55,11 @@ public class PlayerProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Enemy")
+        if (col.tag == "Enemy" && col.tag != "Invulnerable")
         {
-            col.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
+            col.GetComponent<EnemyHealth>().TakeDamage(damage);
         }
-        if (col.gameObject.tag != "Player" && col.gameObject.tag != "Unshootable")
+        if (col.tag != "Player" && col.tag != "Unshootable")
         {
             SoundManager.sound.PlaySound(explosionSound);
             projectileHit = true;
