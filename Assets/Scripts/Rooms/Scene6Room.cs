@@ -27,6 +27,23 @@ public class Scene6Room : MonoBehaviour
     [SerializeField] private GameObject frankethObject;
     [SerializeField] private SpriteRenderer frankethRend;
 
+    [Header("Franketh phase 2")]
+    [SerializeField] private GameObject tiletrap1;
+    [SerializeField] private GameObject tiletrap2;
+    [SerializeField] private GameObject pickupHeart1;
+    [SerializeField] private GameObject pickupHeart2;
+    [SerializeField] private GameObject penguin1;
+    [SerializeField] private GameObject penguin2;
+
+    delegate bool PenguinsDead();
+    PenguinsDead penguinsCheck;
+
+    private bool bothPenguinsDead;
+    private bool checkPenguins;
+
+    private bool penguin1Dead;
+    private bool penguin2Dead;
+
     void Awake()
     {
         boxCollider = GetComponent<BoxCollider2D>();
@@ -35,10 +52,41 @@ public class Scene6Room : MonoBehaviour
     void Update()
     {
         if (moveRightWall) MoveRightWall();
+        if (checkPenguins)
+        {
+            penguinsCheck();
+            if (penguin1Dead && penguin2Dead)
+            {
+                bothPenguinsDead = true;
+                checkPenguins = false;
+            }          
+        }
         if (!frankethHolder.activeInHierarchy) return;
 
         if (frankethHolder.transform.position.x > frankethPosition.position.x)
             frankethHolder.transform.position = new Vector3(frankethHolder.transform.position.x + Time.deltaTime * frankethSlideinSpeed * -1, frankethHolder.transform.position.y, frankethHolder.transform.position.z);
+    }
+    private bool P1()
+    {
+        if (!penguin1.activeInHierarchy && !penguin1Dead)
+        {
+            penguin1Dead = true;
+            pickupHeart1.transform.position = penguin1.transform.position;
+            pickupHeart1.SetActive(true);
+            return true;
+        }        
+        else return false;
+    }
+    private bool P2()
+    {
+        if (!penguin2.activeInHierarchy && !penguin2Dead)
+        {
+            penguin2Dead = true;
+            pickupHeart2.transform.position = penguin2.transform.position;
+            pickupHeart2.SetActive(true);
+            return true;
+        }
+        else return false;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -102,7 +150,18 @@ public class Scene6Room : MonoBehaviour
             frankethRend.color = new Color(colour, colour, 1);
             yield return new WaitForSeconds(0.01f);
         }
-        //Phase 2 has begun...
+        yield return new WaitForSeconds(0.75f);
+        tiletrap1.SetActive(true);
+        tiletrap2.SetActive(true);
+        penguinsCheck = P1;
+        penguinsCheck += P2;
+        yield return new WaitForSeconds(1.75f);
+
+        checkPenguins = true;
+        yield return new WaitUntil(() => bothPenguinsDead);
+        
+        //Debug.Log("both penguins down");
+
     }
     private void MoveRightWall()
     {
