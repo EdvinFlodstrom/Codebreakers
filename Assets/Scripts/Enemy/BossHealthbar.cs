@@ -36,11 +36,6 @@ public class BossHealthbar : MonoBehaviour
     private bool frankethPhase2;
     
 
-    void Awake()
-    {
-        
-    }
-
     void Update()
     {
         if (!icewolfHealthbar.activeInHierarchy && !frankethHealthbar.activeInHierarchy) return;

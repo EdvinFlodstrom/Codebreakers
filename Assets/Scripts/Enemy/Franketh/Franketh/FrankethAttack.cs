@@ -7,14 +7,18 @@ public class FrankethAttack : MonoBehaviour
     [SerializeField] private Transform firepointDown;
     [SerializeField] private Transform firepointUp;
     [SerializeField] private Transform firepointHoming;
+    [SerializeField] private Transform firepointLaser;
     [SerializeField] private GameObject[] regularProjectiles;
     [SerializeField] private GameObject[] homingProjectiles;
+    [SerializeField] private GameObject[] lasers;
     [SerializeField] private AudioClip attackSound;
+    [SerializeField] private AudioClip laserAttackSound;
     [SerializeField] private float attackCooldown;
     [SerializeField] private float touchingDamage;
     private float attackWait;
     private string attackType;
     private float randomChoice;
+    private bool thirdPhase;
 
     private Animator anim;
 
@@ -36,7 +40,7 @@ public class FrankethAttack : MonoBehaviour
     }
     private void Attack(string _type)
     {
-        if (_type != "Layer")
+        if (_type != "Layer" && _type != "Laser")
         {
             anim.SetTrigger("attack");
             SoundManager.sound.PlaySound(attackSound);
@@ -58,6 +62,17 @@ public class FrankethAttack : MonoBehaviour
         {
             StartCoroutine(LayerProjectile());
         }
+        else if (_type == "Laser")
+        {
+            anim.SetTrigger("laserAttack");
+            attackWait = 0;
+        }
+    }
+    private void LaserAttack()
+    {
+        SoundManager.sound.PlaySound(laserAttackSound);
+        lasers[Laser()].transform.position = firepointLaser.position;
+        lasers[Laser()].GetComponent<FrankethLaser>().ActivateProjectile();
     }
     private int RegularProjectile()
     {
@@ -100,17 +115,32 @@ public class FrankethAttack : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         anim.SetBool("layerAttack", false);
     }
+    private int Laser()
+    {
+        for (int i = 0; i < lasers.Length; i++)
+        {
+            if (!lasers[i].activeInHierarchy)
+                return i;
+        }
+        return 0;
+    }
     private void Idle()
     {
         anim.SetTrigger("idle");
     }
+    private void IdlePhase3()
+    {
+        anim.SetTrigger("idlePhase3");
+    }
     private string RandomChoice()
     {
-        randomChoice = Mathf.Round(Random.Range(0, 6));
+        if (!thirdPhase) randomChoice = Mathf.Round(Random.Range(0, 6));
+        else randomChoice = Mathf.Round(Random.Range(0, 8));
 
         if (randomChoice == 0 || randomChoice == 1 || randomChoice == 2) attackType = "Regular";
         else if (randomChoice == 3 || randomChoice == 4) attackType = "Layer";
         else if (randomChoice == 5) attackType = "Homing";
+        else if (randomChoice == 6 || randomChoice == 7) attackType = "Laser";
 
         return attackType;
     }
@@ -120,5 +150,11 @@ public class FrankethAttack : MonoBehaviour
         {
             collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(touchingDamage);
         }
+    }
+    public void Phase3()
+    {
+        anim.SetTrigger("phase3");
+        attackCooldown = attackCooldown - 0.1f;
+        thirdPhase = true;
     }
 }

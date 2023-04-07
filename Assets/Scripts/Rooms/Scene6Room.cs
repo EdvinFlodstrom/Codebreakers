@@ -4,6 +4,7 @@ using UnityEngine;
 public class Scene6Room : MonoBehaviour
 {
     [SerializeField] private BossHealthbar bossHealthbar;
+    [SerializeField] private FrankethAttack frankethAttack;
     [SerializeField] private GameObject icewolfHolder;
     [SerializeField] private GameObject frankethHolder;
     private BoxCollider2D boxCollider;
@@ -40,7 +41,6 @@ public class Scene6Room : MonoBehaviour
 
     private bool bothPenguinsDead;
     private bool checkPenguins;
-
     private bool penguin1Dead;
     private bool penguin2Dead;
 
@@ -159,9 +159,33 @@ public class Scene6Room : MonoBehaviour
 
         checkPenguins = true;
         yield return new WaitUntil(() => bothPenguinsDead);
-        
-        //Debug.Log("both penguins down");
 
+        yield return new WaitForSeconds(2);
+        float redColour = 0;
+        float x = 0;
+        for (float colour = 1; colour > 0; colour -= 0.005f)
+        {
+            if (x > 0)
+            {
+                frankethHolder.transform.position = new Vector3(frankethHolder.transform.position.x, frankethHolder.transform.position.y + 0.1f, frankethHolder.transform.position.z);
+                x = 0;           
+            }
+            else
+            {
+                frankethHolder.transform.position = new Vector3(frankethHolder.transform.position.x, frankethHolder.transform.position.y - 0.1f, frankethHolder.transform.position.z);
+                x = x + 1;
+            }
+            redColour += 0.015f;
+            colour -= 0.015f;
+            frankethRend.color = new Color(redColour, 0, colour);
+            yield return new WaitForSeconds(0.03f);
+        }
+        yield return new WaitForSeconds(0.05f);
+        frankethObject.GetComponent<FrankethAttack>().enabled = true;
+        frankethAttack.Phase3();
+        yield return new WaitForSeconds(0.1f);
+        frankethRend.color = new Color(1, 1, 1);
+        frankethObject.tag = "Enemy";
     }
     private void MoveRightWall()
     {

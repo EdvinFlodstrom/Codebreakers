@@ -1052,6 +1052,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossHealthbar: {fileID: 171690474}
+  frankethAttack: {fileID: 8448273135478457613}
   icewolfHolder: {fileID: 517905973}
   frankethHolder: {fileID: 1922261346}
   cameraObject: {fileID: 519420028}
@@ -3870,7 +3871,7 @@ GameObject:
   m_Component:
   - component: {fileID: 800792509}
   m_Layer: 0
-  m_Name: FraknethFight
+  m_Name: FrankethFight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11775,3 +11776,14 @@ SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 8448273135896471006, guid: 823d86c42e9b8a4438ade40a487bcc2d, type: 3}
   m_PrefabInstance: {fileID: 8448273135478457606}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8448273135478457613 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1057347906053005008, guid: 823d86c42e9b8a4438ade40a487bcc2d, type: 3}
+  m_PrefabInstance: {fileID: 8448273135478457606}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564974054}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d77875a95bb6d6e42a14d5031a0ef15e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
