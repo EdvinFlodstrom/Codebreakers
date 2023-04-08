@@ -162,13 +162,15 @@ public class Scene6Room : MonoBehaviour
 
         yield return new WaitForSeconds(2);
         float redColour = 0;
+        float greenColour = 0;
+        float blueColour = 1;
         float x = 0;
-        for (float colour = 1; colour > 0; colour -= 0.005f)
+        for (blueColour = 1; blueColour > 0; blueColour -= 0.005f)
         {
             if (x > 0)
             {
                 frankethHolder.transform.position = new Vector3(frankethHolder.transform.position.x, frankethHolder.transform.position.y + 0.1f, frankethHolder.transform.position.z);
-                x = 0;           
+                x = 0;
             }
             else
             {
@@ -176,16 +178,33 @@ public class Scene6Room : MonoBehaviour
                 x = x + 1;
             }
             redColour += 0.015f;
-            colour -= 0.015f;
-            frankethRend.color = new Color(redColour, 0, colour);
+            blueColour -= 0.015f;
+            frankethRend.color = new Color(redColour, 0, blueColour);
             yield return new WaitForSeconds(0.03f);
         }
+
+        frankethAttack.Phase3();
+        x = 0;
+        for (blueColour = 0; blueColour < 1; blueColour += 0.025f)
+        {
+            if (x > 0)
+            {
+                frankethHolder.transform.position = new Vector3(frankethHolder.transform.position.x, frankethHolder.transform.position.y + 0.1f, frankethHolder.transform.position.z);
+                x = 0;
+            }
+            else
+            {
+                frankethHolder.transform.position = new Vector3(frankethHolder.transform.position.x, frankethHolder.transform.position.y - 0.1f, frankethHolder.transform.position.z);
+                x = x + 1;
+            }
+            greenColour += 0.025f;
+            frankethRend.color = new Color(redColour, greenColour, blueColour);
+            yield return new WaitForSeconds(0.03f);
+        }
+        frankethRend.color = new Color(1, 1, 1);
         yield return new WaitForSeconds(0.05f);
         frankethObject.GetComponent<FrankethAttack>().enabled = true;
-        frankethAttack.Phase3();
-        yield return new WaitForSeconds(0.1f);
-        frankethRend.color = new Color(1, 1, 1);
-        frankethObject.tag = "Enemy";
+        frankethObject.tag = "Enemy"; 
     }
     private void MoveRightWall()
     {

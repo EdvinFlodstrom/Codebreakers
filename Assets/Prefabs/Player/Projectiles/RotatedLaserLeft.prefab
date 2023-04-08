@@ -151,7 +151,7 @@ MonoBehaviour:
   flightDurationMax: 1
   damage: 1
   playerLocation: {fileID: 0}
-  explosionSound: {fileID: 8300000, guid: 0c075ec2011c76a4cadf7c8ee00c021b, type: 3}
+  explosionSound: {fileID: 8300000, guid: 3b2506bbbb171034a946d76ed00f23a9, type: 3}
 --- !u!95 &82027767946446411
 Animator:
   serializedVersion: 4

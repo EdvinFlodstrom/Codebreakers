@@ -8,6 +8,7 @@ public class FrankethHomingProjectile : MonoBehaviour
     private float projectileHealth;
 
     [SerializeField] private BoxCollider2D boxCollider;
+    [SerializeField] private AudioClip explosionSound;
     private Animator anim;
 
     private bool projectileHit;
@@ -51,6 +52,7 @@ public class FrankethHomingProjectile : MonoBehaviour
         {
             projectileHit = true;
             anim.SetTrigger("explode");
+            SoundManager.sound.PlaySound(explosionSound);
             boxCollider.enabled = false;
         }
     }

@@ -59,9 +59,9 @@ public class PlayerProjectile : MonoBehaviour
         {
             col.GetComponent<EnemyHealth>().TakeDamage(damage);
         }
+        if (col.tag != "Player" && col.tag != "Unshootable" && col.tag != "Enemy") SoundManager.sound.PlaySound(explosionSound);
         if (col.tag != "Player" && col.tag != "Unshootable")
         {
-            SoundManager.sound.PlaySound(explosionSound);
             projectileHit = true;
             boxCollider.enabled = false;
             anim.SetTrigger("explode");

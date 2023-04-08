@@ -170,3 +170,4 @@ MonoBehaviour:
   damage: 1
   speed: 11
   boxCollider: {fileID: 2826224901828343437}
+  explosionSound: {fileID: 8300000, guid: 0c075ec2011c76a4cadf7c8ee00c021b, type: 3}

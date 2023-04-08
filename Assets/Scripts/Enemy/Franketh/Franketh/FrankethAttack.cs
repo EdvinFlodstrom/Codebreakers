@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class FrankethAttack : MonoBehaviour
 {
+    [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private Transform firepoint;
     [SerializeField] private Transform firepointDown;
     [SerializeField] private Transform firepointUp;
@@ -11,6 +12,7 @@ public class FrankethAttack : MonoBehaviour
     [SerializeField] private GameObject[] regularProjectiles;
     [SerializeField] private GameObject[] homingProjectiles;
     [SerializeField] private GameObject[] lasers;
+    [SerializeField] private GameObject[] deathExplosions;
     [SerializeField] private AudioClip attackSound;
     [SerializeField] private AudioClip laserAttackSound;
     [SerializeField] private float attackCooldown;
@@ -19,6 +21,7 @@ public class FrankethAttack : MonoBehaviour
     private string attackType;
     private float randomChoice;
     private bool thirdPhase;
+    private Transform playerPosition;
 
     private Animator anim;
 
@@ -29,6 +32,7 @@ public class FrankethAttack : MonoBehaviour
 
     void Update()
     {
+        playerPosition = playerMovement.transform;
         attackWait += Time.deltaTime;
         
         if (attackWait > attackCooldown)
@@ -72,7 +76,7 @@ public class FrankethAttack : MonoBehaviour
     {
         SoundManager.sound.PlaySound(laserAttackSound);
         lasers[Laser()].transform.position = firepointLaser.position;
-        lasers[Laser()].GetComponent<FrankethLaser>().ActivateProjectile();
+        lasers[Laser()].GetComponent<FrankethLaser>().ActivateProjectile(playerPosition);
     }
     private int RegularProjectile()
     {
@@ -154,7 +158,17 @@ public class FrankethAttack : MonoBehaviour
     public void Phase3()
     {
         anim.SetTrigger("phase3");
-        attackCooldown = attackCooldown - 0.1f;
+        attackCooldown = attackCooldown - 0.125f;
         thirdPhase = true;
+    }
+    IEnumerator FrankethDead()
+    {
+        yield return new WaitForSeconds(0.3f);
+        foreach (var item in deathExplosions)
+        {
+            item.SetActive(true);
+            yield return new WaitForSeconds(0.3f);
+        }
+        anim.SetTrigger("frankethDead");
     }
 }
