@@ -33,9 +33,9 @@ public class FrankethLaser : MonoBehaviour
 
         if (playerPosition.position.y > transform.position.y)
         {
-            transform.Rotate(transform.rotation.x, transform.rotation.y, 0.5f);
+            transform.Rotate(transform.rotation.x, transform.rotation.y, 0.3f);
         }
-        else transform.Rotate(transform.rotation.x, transform.rotation.y, -0.5f);
+        else transform.Rotate(transform.rotation.x, transform.rotation.y, -0.3f);
 
         transform.position = Vector3.MoveTowards(transform.position, new Vector3(playerPositionX, playerPosition.position.y, playerPosition.position.z), speed * Time.deltaTime);
 
@@ -64,7 +64,7 @@ public class FrankethLaser : MonoBehaviour
         {
             collision.GetComponent<PlayerHealth>().TakeDamage(damage);
         }
-        if (collision.tag != "Enemy" && collision.tag != "Boss" && collision.tag != "BossProjectile" && collision.tag != "PlayerProjectile")
+        if (collision.tag != "Enemy" && collision.tag != "Boss" && collision.tag != "BossProjectile" && collision.tag != "PlayerProjectile" && collision.tag != "Heart")
         {
             projectileHit = true;
             anim.SetTrigger("explode");

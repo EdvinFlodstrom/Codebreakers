@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class FrankethAttack : MonoBehaviour
 {
+    [SerializeField] private Scene6Room bossRoom;
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private Transform firepoint;
     [SerializeField] private Transform firepointDown;
@@ -21,13 +22,16 @@ public class FrankethAttack : MonoBehaviour
     private string attackType;
     private float randomChoice;
     private bool thirdPhase;
+    private GameObject playerObject;
     private Transform playerPosition;
+
 
     private Animator anim;
 
     void Awake()
     {
         anim = GetComponent<Animator>();
+        playerObject = playerMovement.gameObject;
     }
 
     void Update()
@@ -64,6 +68,7 @@ public class FrankethAttack : MonoBehaviour
         }
         else if (_type == "Layer")
         {
+            if (thirdPhase) attackWait = -2;
             StartCoroutine(LayerProjectile());
         }
         else if (_type == "Laser")
@@ -115,6 +120,20 @@ public class FrankethAttack : MonoBehaviour
         regularProjectiles[RegularProjectile()].transform.position = firepointDown.position;
         regularProjectiles[RegularProjectile()].GetComponent<FrankethRegularProjectile>().ActivateProjectile();
 
+        if (thirdPhase)
+        {
+            yield return new WaitForSeconds(0.5f);
+
+            SoundManager.sound.PlaySound(attackSound);
+            regularProjectiles[RegularProjectile()].transform.position = firepointUp.position;
+            regularProjectiles[RegularProjectile()].GetComponent<FrankethRegularProjectile>().ActivateProjectile();
+
+            yield return new WaitForSeconds(0.5f);
+
+            SoundManager.sound.PlaySound(attackSound);
+            regularProjectiles[RegularProjectile()].transform.position = firepointDown.position;
+            regularProjectiles[RegularProjectile()].GetComponent<FrankethRegularProjectile>().ActivateProjectile();
+        }
         attackWait = 0.5f;
         yield return new WaitForSeconds(0.5f);
         anim.SetBool("layerAttack", false);
@@ -163,12 +182,14 @@ public class FrankethAttack : MonoBehaviour
     }
     IEnumerator FrankethDead()
     {
+        playerObject.GetComponent<PlayerHealth>().invulnerable = true;
         yield return new WaitForSeconds(0.3f);
         foreach (var item in deathExplosions)
         {
             item.SetActive(true);
             yield return new WaitForSeconds(0.3f);
         }
-        anim.SetTrigger("frankethDead");
+        bossRoom.StartCoroutine(bossRoom.CodeBroken());
+        anim.SetTrigger("frankethDead");     
     }
 }

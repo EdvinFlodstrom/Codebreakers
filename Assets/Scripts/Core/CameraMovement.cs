@@ -1,7 +1,9 @@
+using System.Collections;
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
+    [SerializeField] private Scene6Room bossRoom;
     [SerializeField] private float speed;
     private float currentPosX;
     private float currentPosY;
@@ -82,10 +84,15 @@ public class CameraMovement : MonoBehaviour
         towardsCenterY = Mathf.Lerp(towardsCenterY, (toCenterValueY), Time.deltaTime * toCenterSpeedY);
         transform.position = new Vector3(currentPosX - towardsCenterX, currentPosY - towardsCenterY, transform.position.z);
     }
-    //--Code broken--effekt?
-    //towardsIcewolf = Mathf.Lerp(aheadDistance, (toIcewolfValue* player.localScale.x), Time.deltaTime* toIcewolfSpeed);
-    //transform.position = new Vector3(player.position.x + towardsIcewolf, transform.position.y, transform.position.z);
-    //Towards icewolf: 1
-    //To icewolf value: 10
-    //To icewolf speed: 5
+    public IEnumerator CodeBroken()
+    {
+        for (float time = 0; time < 0.5; time += Time.deltaTime)
+        {
+            transform.position = new Vector3(transform.position.x + .1f, transform.position.y - .1f, transform.position.z);
+            yield return new WaitForSeconds(0.05f);
+            transform.position = new Vector3(transform.position.x - 1f, transform.position.y + .1f, transform.position.z);
+            yield return new WaitForSeconds(0.05f);
+        }
+        bossRoom.StartCoroutine(bossRoom.Death());
+    }
 }

@@ -1,3 +1,4 @@
+using UnityEngine.SceneManagement;
 using System.Collections;
 using UnityEngine;
 
@@ -35,6 +36,14 @@ public class Scene6Room : MonoBehaviour
     [SerializeField] private GameObject pickupHeart2;
     [SerializeField] private GameObject penguin1;
     [SerializeField] private GameObject penguin2;
+
+    [Header("Code Broken")]
+    [SerializeField] private GameObject blackCanvas;
+    [SerializeField] private SpriteRenderer blackCanvasRend;
+    [SerializeField] private GameObject codeBroken;
+    [SerializeField] private SpriteRenderer codeBrokenRend;
+    [SerializeField] private GameObject death;
+    [SerializeField] private GameObject playerHealthBar;
 
     delegate bool PenguinsDead();
     PenguinsDead penguinsCheck;
@@ -209,5 +218,44 @@ public class Scene6Room : MonoBehaviour
     private void MoveRightWall()
     {
         rightWall.position = new Vector3(rightWall.position.x + Time.deltaTime * 1 * rightWallSpeed, rightWall.position.y, rightWall.position.z);
+    }
+    public IEnumerator CodeBroken()
+    {
+        yield return new WaitForSeconds(2);
+        StartCoroutine(BlackCanvas());
+        StartCoroutine(CodeBrokenSprite());
+
+        yield return new WaitForSeconds(3);
+
+        cameraObject.GetComponent<CameraMovement>().StartCoroutine(cameraObject.GetComponent<CameraMovement>().CodeBroken());
+    }
+    private IEnumerator BlackCanvas()
+    {
+        Color c = blackCanvasRend.material.color;
+        for (float alpha = 0f; alpha < 0.9; alpha += 0.05f)
+        {
+            c.a = alpha;
+            blackCanvasRend.color = new Color(1f, 1f, 1f, alpha);
+            yield return new WaitForSeconds(.05f);
+        }
+    }
+    private IEnumerator CodeBrokenSprite()
+    {
+        Color c = codeBrokenRend.material.color;
+        for (float alpha = 0f; alpha < 1; alpha += 0.05f)
+        {
+            c.a = alpha;
+            codeBrokenRend.color = new Color(1f, 1f, 1f, alpha);
+            yield return new WaitForSeconds(.05f);
+        }
+    }
+    public IEnumerator Death()
+    {
+        playerHealthBar.SetActive(false);
+        death.SetActive(true);
+
+        yield return new WaitForSeconds(4);
+
+        SceneManager.LoadScene("MainMenu");
     }
 }

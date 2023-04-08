@@ -48,7 +48,7 @@ public class FrankethHomingProjectile : MonoBehaviour
         {
             collision.GetComponent<PlayerHealth>().TakeDamage(damage);
         }
-        if (collision.tag != "Enemy" && collision.tag != "Boss" && collision.tag != "PlayerProjectile" && collision.tag != "BossProjectile")
+        if (collision.tag != "Enemy" && collision.tag != "Boss" && collision.tag != "PlayerProjectile" && collision.tag != "BossProjectile" && collision.tag != "Heart")
         {
             projectileHit = true;
             anim.SetTrigger("explode");
