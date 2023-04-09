@@ -18,21 +18,27 @@ public class SceneHandler : MonoBehaviour
     private void LoadScene4()
     {
         sceneList[0].SetActive(false);
+        sceneList[1].SetActive(true);
         sceneList[3].SetActive(true);
     }
     private void LoadScene5()
     {
+        sceneList[0].SetActive(false);
         sceneList[1].SetActive(false);
+        sceneList[2].SetActive(true);
         sceneList[4].SetActive(true);
     }
     private void LoadScene6()
     {
+        sceneList[0].SetActive(false);
+        sceneList[1].SetActive(false);
         sceneList[2].SetActive(false);
+        sceneList[3].SetActive(true);
+        sceneList[4].SetActive(true);
         sceneList[5].SetActive(true);
     }
     public void BossScene()
     {
         sceneList[3].SetActive(false);
-        sceneList[4].SetActive(false);
     }
 }

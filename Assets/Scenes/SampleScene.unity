@@ -345,7 +345,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.69993114}
+  m_Offset: {x: 4.4574738, y: 0.69993114}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -356,7 +356,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 3.9982548}
+  m_Size: {x: 9.9149475, y: 3.9982548}
   m_EdgeRadius: 0
 --- !u!114 &40939716
 MonoBehaviour:
@@ -7111,7 +7111,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 28.225475, y: 11.656552}
+  m_Offset: {x: 28.225475, y: 11.785485}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -7122,7 +7122,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.5623856, y: 28.957365}
+  m_Size: {x: 3.5623856, y: 29.21523}
   m_EdgeRadius: 0
 --- !u!1 &1277418763
 GameObject:
@@ -7302,7 +7302,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1289492665}
   - component: {fileID: 1289492666}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11051,7 +11051,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1931950029
 Transform:
   m_ObjectHideFlags: 0
@@ -11846,7 +11846,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 41.200573, y: -7.737609}
+  m_Offset: {x: 40.945724, y: -7.737609}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -11857,7 +11857,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 75.51322, y: 3.6691875}
+  m_Size: {x: 76.02292, y: 3.6691875}
   m_EdgeRadius: 0
 --- !u!1001 &2086510717
 PrefabInstance:
@@ -12826,7 +12826,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5215886272448641957, guid: 0ba73fed245d8084fa754d1679b6f5f2, type: 3}
       propertyPath: enemyHealth
-      value: 1
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5215886272448641958, guid: 0ba73fed245d8084fa754d1679b6f5f2, type: 3}
       propertyPath: playerPosition
@@ -12886,7 +12886,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5215886273095290463, guid: 0ba73fed245d8084fa754d1679b6f5f2, type: 3}
       propertyPath: enemyHealth
-      value: 1
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ba73fed245d8084fa754d1679b6f5f2, type: 3}

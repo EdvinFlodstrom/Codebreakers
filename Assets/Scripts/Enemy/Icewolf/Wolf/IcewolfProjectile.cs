@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class IcewolfProjectile : MonoBehaviour
 {
+    [SerializeField] private AudioClip explosionSound;
     [SerializeField] private float damage;
     [SerializeField] private float speedX;
     [SerializeField] private float speedY;
@@ -41,9 +42,13 @@ public class IcewolfProjectile : MonoBehaviour
         {
             collision.GetComponent<PlayerHealth>().TakeDamage(damage);
         }
-        projectileHit = true;
-        anim.SetTrigger("explode");
-        boxCollider.enabled = false;
+        if (collision.tag != "PlayerProjectile")
+        {
+            projectileHit = true;
+            anim.SetTrigger("explode");
+            SoundManager.sound.PlaySound(explosionSound);
+            boxCollider.enabled = false;
+        }
     }
     private void Deactivate()
     {
