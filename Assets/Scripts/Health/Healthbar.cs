@@ -10,25 +10,25 @@ public class Healthbar : MonoBehaviour
     [SerializeField] private Image totalHeart3;
     [SerializeField] private Image totalHeart4;
 
-    [SerializeField] private Image currentHeart1;
-    [SerializeField] private Image currentHeart2;
-    [SerializeField] private Image currentHeart3;
-    [SerializeField] private Image currentHeart4;
+    [SerializeField] private Image[] currentHearts;
 
     private float heartsLost = 0;
     private float heartsGained;
 
 
-    void Start()
+    void Awake()
     {
-        totalHeart4.enabled = false;
-        currentHeart4.enabled = false;
+        if (PlayerPrefs.GetInt("PlayerMaxHealth") != 1)
+        {
+            totalHeart4.enabled = false;
+            currentHearts[3].enabled = false;
+        }           
     }
         
     void Update()
     {
         heartsGained = heartsLost;
-        heartsLost = playerHealth.startingHealth - playerHealth.currentHealth;
+        heartsLost = playerHealth.maxHealth - playerHealth.currentHealth;
         
 
         if (heartsLost > 0)
@@ -39,39 +39,45 @@ public class Healthbar : MonoBehaviour
         {
             AddHeart(heartsLost + 1);
         }
-
-        if (playerHealth.maxHealth > 3) totalHeart4.enabled = true;
     }
     private void RemoveHeart(float _hearts)
     {
          if (playerHealth.maxHealth > 3)
         {
-            if (_hearts == 1) currentHeart4.enabled = false;
-            if (_hearts == 2) currentHeart3.enabled = false;
-            if (_hearts == 3) currentHeart2.enabled = false;
-            if (_hearts == 4) currentHeart1.enabled = false;
+            if (_hearts == 1) currentHearts[3].enabled = false;
+            if (_hearts == 2) currentHearts[2].enabled = false;
+            if (_hearts == 3) currentHearts[1].enabled = false;
+            if (_hearts == 4) currentHearts[0].enabled = false;
         }
          else
         {
-            if (_hearts == 1) currentHeart3.enabled = false;
-            if (_hearts == 2) currentHeart2.enabled = false;
-            if (_hearts == 3) currentHeart1.enabled = false;
+            if (_hearts == 1) currentHearts[2].enabled = false;
+            if (_hearts == 2) currentHearts[1].enabled = false;
+            if (_hearts == 3) currentHearts[0].enabled = false;
         }
     }
     private void AddHeart(float _hearts)
     {
         if (playerHealth.maxHealth > 3)
         {
-            if (_hearts == 1) currentHeart4.enabled = true;
-            if (_hearts == 2) currentHeart3.enabled = true;
-            if (_hearts == 3) currentHeart2.enabled = true;
-            if (_hearts == 4) currentHeart1.enabled = true;
+            if (_hearts == 1) currentHearts[3].enabled = true;
+            if (_hearts == 2) currentHearts[2].enabled = true;
+            if (_hearts == 3) currentHearts[1].enabled = true;
+            if (_hearts == 4) currentHearts[0].enabled = true;
         }
         else
         {
-            if (_hearts == 1) currentHeart3.enabled = true;
-            if (_hearts == 2) currentHeart2.enabled = true;
-            if (_hearts == 3) currentHeart1.enabled = true;
+            if (_hearts == 1) currentHearts[2].enabled = true;
+            if (_hearts == 2) currentHearts[1].enabled = true;
+            if (_hearts == 3) currentHearts[0].enabled = true;
+        }
+    }
+    public void FourthHeart()
+    {
+        totalHeart4.enabled = true;
+        foreach (Image item in currentHearts)
+        {
+            item.enabled = true;
         }
     }
 }

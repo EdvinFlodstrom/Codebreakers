@@ -54,7 +54,7 @@ public class ShootingPenguinProjectile : MonoBehaviour
         {
             col.GetComponent<PlayerHealth>().TakeDamage(damage);
         }
-        if (col.tag != "Enemy" && col.tag != "Heart")
+        if (col.tag != "Enemy" && col.tag != "Heart" && col.tag != "Unshootable")
         {
             SoundManager.sound.PlaySound(hitSound);
             projectileHit = true;

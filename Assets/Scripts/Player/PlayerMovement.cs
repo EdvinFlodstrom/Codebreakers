@@ -14,8 +14,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private AudioClip jumpSound;
     [SerializeField] private AudioClip walkSound;
 
-    public Rigidbody2D body;
-    public Animator anim;
+    [System.NonSerialized] public Rigidbody2D body;
+    [System.NonSerialized] public Animator anim;
     private float horizontalInput;
     private float verticalInput;
     private bool canJump;

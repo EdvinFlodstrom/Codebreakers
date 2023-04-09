@@ -32,10 +32,13 @@ public class DroneProjectile : MonoBehaviour
         {
             player.GetComponent<PlayerHealth>().TakeDamage(damage);
         }
-        SoundManager.sound.PlaySound(explosionSound);
-        anim.SetTrigger("explode");
-        boxCollider.enabled = false;
-        body.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezePositionX;
+        if (collision.gameObject.tag != "Unshootable")
+        {
+            SoundManager.sound.PlaySound(explosionSound);
+            anim.SetTrigger("explode");
+            boxCollider.enabled = false;
+            body.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezePositionX;
+        }
     }
     private bool PlayerHit()
     {
@@ -43,7 +46,6 @@ public class DroneProjectile : MonoBehaviour
         if (hit.collider != null) player = hit.collider.gameObject;
         return hit.collider != null;
     }
- 
     private void Deactivate()
     {
         gameObject.SetActive(false);

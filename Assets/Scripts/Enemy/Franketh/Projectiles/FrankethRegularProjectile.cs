@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class FrankethRegularProjectile : MonoBehaviour
 {
+    [SerializeField] private bool scene5Projectile;
+
     [SerializeField] private float damage;
     [SerializeField] private float speed;
 
@@ -34,12 +36,16 @@ public class FrankethRegularProjectile : MonoBehaviour
         {
             collision.GetComponent<PlayerHealth>().TakeDamage(damage);
         }
-        if (collision.tag != "Enemy" && collision.tag != "Boss" && collision.tag != "BossProjectile" && collision.tag != "PlayerProjectile" && collision.tag != "Heart")
+        if (collision.tag != "Enemy" && collision.tag != "Boss" && collision.tag != "BossProjectile" && collision.tag != "PlayerProjectile" && collision.tag != "Heart" && collision.tag != "SpecialHeart" && collision.tag != "Unshootable")
         {
             projectileHit = true;
-            anim.SetTrigger("explode");
-            SoundManager.sound.PlaySound(explosionSound);
+            anim.SetTrigger("explode");            
             boxCollider.enabled = false;
+            if (!scene5Projectile) SoundManager.sound.PlaySound(explosionSound);
+            else
+            {
+                if (GetComponent<EnemySoundRange>().PlayerInSoundRange()) SoundManager.sound.PlaySound(explosionSound);
+            }
         }  
     }
     private void Deactivate()

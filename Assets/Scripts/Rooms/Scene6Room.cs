@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Scene6Room : MonoBehaviour
 {
+    [SerializeField] private GameObject scene5Projectiles;
     [SerializeField] private BossHealthbar bossHealthbar;
     [SerializeField] private FrankethAttack frankethAttack;
     [SerializeField] private GameObject icewolfHolder;
@@ -103,7 +104,9 @@ public class Scene6Room : MonoBehaviour
         {
             boxCollider.enabled = false;
             playerObject = collision.gameObject;
-            
+
+            Destroy(scene5Projectiles);
+            GetComponentInParent<SceneHandler>().BossScene();
             playerObject.GetComponent<PlayerMovement>().enabled = false;
             playerObject.GetComponent<PlayerAttack>().enabled = false;
             playerObject.GetComponent<PlayerMovement>().body.velocity = new Vector2(0, playerObject.GetComponent<PlayerMovement>().body.velocity.y);
@@ -184,7 +187,7 @@ public class Scene6Room : MonoBehaviour
             else
             {
                 frankethHolder.transform.position = new Vector3(frankethHolder.transform.position.x, frankethHolder.transform.position.y - 0.1f, frankethHolder.transform.position.z);
-                x = x + 1;
+                x++;
             }
             redColour += 0.015f;
             blueColour -= 0.015f;
@@ -204,7 +207,7 @@ public class Scene6Room : MonoBehaviour
             else
             {
                 frankethHolder.transform.position = new Vector3(frankethHolder.transform.position.x, frankethHolder.transform.position.y - 0.1f, frankethHolder.transform.position.z);
-                x = x + 1;
+                x++;
             }
             greenColour += 0.025f;
             frankethRend.color = new Color(redColour, greenColour, blueColour);

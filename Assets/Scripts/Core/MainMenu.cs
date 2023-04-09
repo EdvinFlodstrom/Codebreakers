@@ -14,6 +14,8 @@ public class MainMenu : MonoBehaviour
     }
     public void Play()
     {
-        SceneManager.LoadScene("SampleScene");
+        PlayerPrefs.SetInt("CheckpointNumber", 0);
+        PlayerPrefs.SetInt("PlayerMaxHealth", 0);
+        SceneManager.LoadScene("Tutorial");
     }
 }

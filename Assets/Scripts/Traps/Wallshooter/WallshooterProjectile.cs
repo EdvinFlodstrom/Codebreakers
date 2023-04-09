@@ -48,10 +48,13 @@ public class WallshooterProjectile : MonoBehaviour
         {
             collider.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
         }
-        SoundManager.sound.PlaySound(explosionSound);
-        anim.SetTrigger("explode");
-        boxCollider.enabled = false;
-        projectileHit = true;
+        if (collider.tag != "Unshootable")
+        {
+            SoundManager.sound.PlaySound(explosionSound);
+            anim.SetTrigger("explode");
+            boxCollider.enabled = false;
+            projectileHit = true;
+        }
     }
     private void Deactivate()
     {
