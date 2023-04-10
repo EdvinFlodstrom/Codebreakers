@@ -48,7 +48,7 @@ public class CameraMovement : MonoBehaviour
 
     public string follow = "Player";
 
-    private void Start()
+    private void Awake()
     {
         Application.targetFrameRate = 60;
     }

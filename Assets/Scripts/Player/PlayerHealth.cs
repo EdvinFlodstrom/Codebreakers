@@ -106,7 +106,7 @@ public class PlayerHealth : MonoBehaviour
             SoundManager.sound.PlaySound(heartPickupSound);
             if (currentHealth < maxHealth)
             {
-                currentHealth = Mathf.Clamp(currentHealth + _hearts, 0, startingHealth);
+                currentHealth = Mathf.Clamp(currentHealth + _hearts, 0, maxHealth);
             }
         }
         else if (_type == "Special")
