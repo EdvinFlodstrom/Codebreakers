@@ -4,6 +4,7 @@ using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [SerializeField] private BackgroundMusicManager backgroundMusic;
     [SerializeField] private Checkpoint checkpoint;
     [SerializeField] private Transform startingPosition;
     [Header("First checkpoint is starting position")]
@@ -133,6 +134,7 @@ public class PlayerHealth : MonoBehaviour
             foreach (Behaviour component in components)
                 component.enabled = false;
             SoundManager.sound.PlaySound(deathSound);
+            if (backgroundMusic != null) backgroundMusic.StartCoroutine(backgroundMusic.StopMusic());
             boxCollider.enabled = false;
             rigidBody.gravityScale = 0;
             rigidBody.velocity = Vector2.zero;

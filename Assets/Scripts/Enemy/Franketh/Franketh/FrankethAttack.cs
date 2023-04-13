@@ -182,6 +182,7 @@ public class FrankethAttack : MonoBehaviour
     }
     IEnumerator FrankethDead()
     {
+        bossRoom.StopMusic();
         playerObject.GetComponent<PlayerHealth>().invulnerable = true;
         yield return new WaitForSeconds(0.3f);
         foreach (var item in deathExplosions)

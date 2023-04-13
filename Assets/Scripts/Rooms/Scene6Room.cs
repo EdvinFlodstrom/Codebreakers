@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Scene6Room : MonoBehaviour
 {
+    [SerializeField] private BackgroundMusicManager backgroundMusic;
     [SerializeField] private GameObject scene5Projectiles;
     [SerializeField] private BossHealthbar bossHealthbar;
     [SerializeField] private FrankethAttack frankethAttack;
@@ -117,6 +118,7 @@ public class Scene6Room : MonoBehaviour
     }
     IEnumerator ActivateBossFight()
     {
+        backgroundMusic.StartCoroutine(backgroundMusic.StopMusic());
         cameraObject.GetComponent<CameraMovement>().follow = "Icewolf";
         yield return new WaitForSeconds(1.5f);
         icewolfBallObject.SetActive(true);
@@ -129,12 +131,14 @@ public class Scene6Room : MonoBehaviour
         icewolfObject.GetComponent<IcewolfFightStart>().InitiateFight();
         yield return new WaitForSeconds(0.01f);
         bossHealthbar.ActivateIcewolf();
+        backgroundMusic.BossMusic("icewolf");
         playerObject.GetComponent<PlayerMovement>().enabled = true;
         playerObject.GetComponent<PlayerAttack>().enabled = true;
         icewolfBallObject.GetComponent<IcewolfBallRoute>().body.gravityScale = 1;
     }
     public IEnumerator FrankethTime()
     {
+        backgroundMusic.StartCoroutine(backgroundMusic.StopMusic());
         icewolfHolder.SetActive(false);
         moveRightWall = true;
         yield return new WaitForSeconds(1.5f);
@@ -146,6 +150,7 @@ public class Scene6Room : MonoBehaviour
         frankethObject.GetComponent<EnemyHealth>().enabled = true;
         yield return new WaitForSeconds(0.01f);
         bossHealthbar.ActivateFranketh();
+        backgroundMusic.BossMusic("franketh");
         frankethObject.GetComponent<FrankethAttack>().enabled = true;
         frankethObject.tag = "Enemy";
     }
@@ -224,7 +229,9 @@ public class Scene6Room : MonoBehaviour
     }
     public IEnumerator CodeBroken()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
+        backgroundMusic.BossMusic("victory");
+        yield return new WaitForSeconds(1.5f);
         StartCoroutine(BlackCanvas());
         StartCoroutine(CodeBrokenSprite());
 
@@ -260,5 +267,9 @@ public class Scene6Room : MonoBehaviour
         yield return new WaitForSeconds(4);
 
         SceneManager.LoadScene("MainMenu");
+    }
+    public void StopMusic()
+    {
+        backgroundMusic.StartCoroutine(backgroundMusic.StopMusic());
     }
 }
