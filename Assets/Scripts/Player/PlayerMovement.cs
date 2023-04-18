@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         OnPlatform();
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -62,11 +62,7 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("shoot", true);
         }
         else anim.SetBool("shoot", false);
-
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            Jump();
-        }
+      
         if (IsGrounded())
         {
             anim.SetBool("jump", false);
@@ -98,6 +94,13 @@ public class PlayerMovement : MonoBehaviour
                 anim.SetBool("jump", true);
                 SoundManager.sound.PlaySound(jumpSound);
             }
+        }
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            Jump();
         }
     }
     public bool IsGrounded()

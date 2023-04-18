@@ -14,12 +14,15 @@ public class SceneHandler : MonoBehaviour
     private void LoadScene3()
     {
         sceneList[2].SetActive(true);
+        sceneList[4].SetActive(false);
+        sceneList[5].SetActive(false);
     }
     private void LoadScene4()
     {
         sceneList[0].SetActive(false);
         sceneList[1].SetActive(true);
         sceneList[3].SetActive(true);
+        sceneList[4].SetActive(false);
     }
     private void LoadScene5()
     {
@@ -27,6 +30,7 @@ public class SceneHandler : MonoBehaviour
         sceneList[1].SetActive(false);
         sceneList[2].SetActive(true);
         sceneList[4].SetActive(true);
+        sceneList[5].SetActive(false);
     }
     private void LoadScene6()
     {
