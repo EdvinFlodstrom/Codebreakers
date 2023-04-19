@@ -264,7 +264,7 @@ public class Scene6Room : MonoBehaviour
         playerHealthBar.SetActive(false);
         death.SetActive(true);
 
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(7);
 
         SceneManager.LoadScene("MainMenu");
     }

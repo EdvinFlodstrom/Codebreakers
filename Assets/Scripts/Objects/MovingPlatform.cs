@@ -19,7 +19,7 @@ public class MovingPlatform : MonoBehaviour
     private bool lockPlayer;
     private GameObject playerObject;
 
-    void Update()
+    void FixedUpdate()
     {
         PlayerOnPlatform();
 

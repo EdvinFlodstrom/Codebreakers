@@ -25,7 +25,7 @@ public class MeleePenguinMovement : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         penguinWalkSoundWait += Time.deltaTime;
 

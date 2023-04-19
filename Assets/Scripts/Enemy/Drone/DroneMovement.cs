@@ -9,12 +9,7 @@ public class DroneMovement : MonoBehaviour
     [SerializeField] private float speed;
     private bool movingLeft = true;
 
-    void Start()
-    {
-        
-    }
-
-    void Update()
+    void FixedUpdate()
     {
         if (movingLeft)
         {
