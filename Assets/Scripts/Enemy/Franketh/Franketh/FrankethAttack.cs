@@ -25,7 +25,6 @@ public class FrankethAttack : MonoBehaviour
     private GameObject playerObject;
     private Transform playerPosition;
 
-
     private Animator anim;
 
     void Awake()
@@ -33,7 +32,6 @@ public class FrankethAttack : MonoBehaviour
         anim = GetComponent<Animator>();
         playerObject = playerMovement.gameObject;
     }
-
     void Update()
     {
         playerPosition = playerMovement.transform;
