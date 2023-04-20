@@ -12,6 +12,8 @@ public class FrankethRegularProjectile : MonoBehaviour
     private Animator anim;
 
     private bool projectileHit;
+    private int projectileMaxFlightTime = 10;
+    private float projectileCurrentFlightTime;
 
     void Awake()
     {
@@ -20,12 +22,20 @@ public class FrankethRegularProjectile : MonoBehaviour
 
     void Update()
     {
+        projectileCurrentFlightTime += Time.deltaTime;
+
+        if (projectileCurrentFlightTime > projectileMaxFlightTime)
+        {
+            ExplodeProjectile();
+            projectileCurrentFlightTime = 0;
+        }
         if (projectileHit) return;
 
         transform.position = new Vector3(transform.position.x + Time.deltaTime * -speed, transform.position.y, transform.position.z);
     }
     public void ActivateProjectile()
     {
+        projectileCurrentFlightTime = 0;
         projectileHit = false;
         boxCollider.enabled = true;
         gameObject.SetActive(true);
@@ -38,15 +48,19 @@ public class FrankethRegularProjectile : MonoBehaviour
         }
         if (collision.tag != "Enemy" && collision.tag != "Boss" && collision.tag != "BossProjectile" && collision.tag != "PlayerProjectile" && collision.tag != "Heart" && collision.tag != "SpecialHeart" && collision.tag != "Unshootable")
         {
-            projectileHit = true;
-            anim.SetTrigger("explode");            
-            boxCollider.enabled = false;
-            if (!scene5Projectile) SoundManager.sound.PlaySound(explosionSound);
-            else
-            {
-                if (GetComponent<EnemySoundRange>().PlayerInSoundRange()) SoundManager.sound.PlaySound(explosionSound);
-            }
+            ExplodeProjectile();
         }  
+    }
+    private void ExplodeProjectile()
+    {
+        projectileHit = true;
+        anim.SetTrigger("explode");
+        boxCollider.enabled = false;
+        if (!scene5Projectile) SoundManager.sound.PlaySound(explosionSound);
+        else
+        {
+            if (GetComponent<EnemySoundRange>().PlayerInSoundRange()) SoundManager.sound.PlaySound(explosionSound);
+        }
     }
     private void Deactivate()
     {

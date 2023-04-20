@@ -1,6 +1,7 @@
 using UnityEngine.SceneManagement;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Scene6Room : MonoBehaviour
 {
@@ -46,6 +47,14 @@ public class Scene6Room : MonoBehaviour
     [SerializeField] private SpriteRenderer codeBrokenRend;
     [SerializeField] private GameObject death;
     [SerializeField] private GameObject playerHealthBar;
+
+    [Header("Credits")]
+    [SerializeField] private GameObject creditsHolder;
+    [SerializeField] private Image creditsBackground;
+    [SerializeField] private Image creditsName1;
+    [SerializeField] private Image creditsName2;
+    [SerializeField] private Image creditsName3;
+    private bool nextName;
 
     delegate bool PenguinsDead();
     PenguinsDead penguinsCheck;
@@ -266,7 +275,47 @@ public class Scene6Room : MonoBehaviour
 
         yield return new WaitForSeconds(7);
 
+        creditsHolder.SetActive(true);
+
+        backgroundMusic.BossMusic("icewolf");
+        Color c = creditsBackground.material.color;
+        for (float alpha = 0f; alpha < 1; alpha += 0.01f)
+        {
+            c.a = alpha;
+            creditsBackground.color = new Color(1f, 1f, 1f, alpha);
+            yield return new WaitForSeconds(.05f);
+        }
+        yield return new WaitForSeconds(1.5f);
+
+        StartCoroutine(CreditsNamesFader(1));
+        yield return new WaitUntil(() => nextName);
+        StartCoroutine(CreditsNamesFader(2));
+        yield return new WaitUntil(() => nextName);
+        StartCoroutine(CreditsNamesFader(3));
+        yield return new WaitUntil(() => nextName);
+        
+        yield return new WaitForSeconds(4);
+        StopMusic();
+        yield return new WaitForSeconds(2.5f);
+
         SceneManager.LoadScene("MainMenu");
+    }
+    private IEnumerator CreditsNamesFader(int _nameNum)
+    {
+        nextName = false;
+        Image creditsName;
+        if (_nameNum == 1) creditsName = creditsName1;
+        else if (_nameNum == 2) creditsName = creditsName2;
+        else creditsName = creditsName3;
+
+        Color c = creditsName.material.color;
+        for (float alpha = 0f; alpha < 1; alpha += 0.01f)
+        {
+            c.a = alpha;
+            creditsName.color = new Color(1f, 1f, 1f, alpha);
+            yield return new WaitForSeconds(.01f);
+        }
+        nextName = true;
     }
     public void StopMusic()
     {
