@@ -117,10 +117,7 @@ public class Scene6Room : MonoBehaviour
 
             Destroy(scene5Projectiles);
             GetComponentInParent<SceneHandler>().BossScene();
-            playerObject.GetComponent<PlayerMovement>().enabled = false;
-            playerObject.GetComponent<PlayerAttack>().enabled = false;
-            playerObject.GetComponent<PlayerMovement>().body.velocity = new Vector2(0, playerObject.GetComponent<PlayerMovement>().body.velocity.y);
-            playerObject.GetComponent<PlayerMovement>().anim.SetBool("run", false);
+            StopPlayer();
 
             StartCoroutine(ActivateBossFight());
         }
@@ -246,6 +243,7 @@ public class Scene6Room : MonoBehaviour
 
         yield return new WaitForSeconds(3);
 
+        StopPlayer();
         cameraObject.GetComponent<CameraMovement>().StartCoroutine(cameraObject.GetComponent<CameraMovement>().CodeBroken());
     }
     private IEnumerator BlackCanvas()
@@ -316,6 +314,13 @@ public class Scene6Room : MonoBehaviour
             yield return new WaitForSeconds(.01f);
         }
         nextName = true;
+    }
+    private void StopPlayer()
+    {
+        playerObject.GetComponent<PlayerMovement>().enabled = false;
+        playerObject.GetComponent<PlayerAttack>().enabled = false;
+        playerObject.GetComponent<PlayerMovement>().body.velocity = new Vector2(0, playerObject.GetComponent<PlayerMovement>().body.velocity.y);
+        playerObject.GetComponent<PlayerMovement>().anim.SetBool("run", false);
     }
     public void StopMusic()
     {
